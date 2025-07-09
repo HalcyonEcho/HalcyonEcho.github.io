@@ -2,6 +2,7 @@
 <html>
 <head>
 <title> HalcyonEcho </title> 
+
 <style> 
 
 body{
@@ -12,15 +13,82 @@ body{
 
 }
 
+body {
+  color: white;
+}
+
+
+h1 {text-align: center;}
+p {text-align: center;}
+div {text-align: center;}
+
+
+a {
+  color: rgb(156, 156, 156);
+  text-decoration: bold;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: #00ffff; /* or whatever accent you want */
+}
+
+
 </style>
 </head>
 <body> 
+<div class="container">
+  <h1 class="blink">HalcyonEcho</h1>
+  <div style="display: flex; align-items: center; justify-content: center; gap: 20px; margin: 20px 0;">
+    <p>Hosted on GitHub Pages, because my broke ass ain paying for Geocities 🧪</p>
+    <div>
+      <button id="play-btn" style="font-size: 15px; padding: 3px 5px; cursor: pointer;">
+        Unmute Background Music
+      </button>
+      <p id="now-playing" style="margin-block: 8px; font-style: italic; display: none;">
+        Now Playing 🎼 Snowdin Town - Toby Fox
+      </p>
+    </div>
+  </div>
+</div>
 
 
-<button type="button">Click Me!</button>
+    <p>
+        <a href="index.html">Whoami</a> |
+        <a href="projects.html">Projects</a> |
+        <a href="https://github.com/HalcyonEcho?tab=repositories">Repositories</a>
+    </p>
+
+    <marquee behavior="scroll" direction="left">🗣️🔥 UNDER CONSTRUCTION 🗣️🔥</marquee>
+  </div>
+
+
+
+
+<audio id="bg-music" loop>
+  <source src="audios/Snowdin Town.mp3" type="audio/mpeg" />
+
+</audio>
+
+<script>
+  const btn = document.getElementById('play-btn');
+  const audio = document.getElementById('bg-music');
+  const nowPlaying = document.getElementById('now-playing');
+
+  btn.addEventListener('click', () => {
+    audio.play();
+    btn.style.display = 'none'; // hide button after playing
+    nowPlaying.style.display = 'block';
+  });
+</script>
 
 </body>
 
+
+
+<footer style="text-align: center; padding: 20px 0; font-size: 14px; color: #ffffff; border-top: 1px solid #333; margin-top: 40px;">
+  &copy; 2025 @HalcyonEcho &nbsp;|&nbsp; Built with 💻 and a sprinkle of chaos
+</footer>
 
 </html>
 
