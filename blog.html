@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> Blogs</title> 
+<style> 
+/* Default Styling Here*/
+
+h1 {text-align: center;}
+p {text-align: center;}
+div {text-align: center;}
+
+body{
+    background-image: url("images/Bricked.jpeg");
+    background-repeat: repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    color: white;
+    margin: 0;
+    background-color: black;
+    font-family: 'Verdana', sans-serif;
+
+}
+a:hover,
+textarea,
+input {
+  cursor: url(https://cur.cursors-4u.net/games/gam-12/gam1111.cur), default !important;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 0 5px;
+    background: linear-gradient(to bottom, #c0c0c0, #808080); /* fake bevel */
+    border: 2px outset #ffffff;
+    color: #000000;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+    box-shadow: 2px 2px 0 #333;
+    cursor: url(https://cur.cursors-4u.net/games/gam-12/gam1111.cur), default !important;
+
+}
+
+button:hover {
+  background: linear-gradient(to bottom, #ffff00, #ffcc00);
+  color: #000;
+  border: 2px inset #ffffff;
+  box-shadow: none;
+  cursor: url(https://cur.cursors-4u.net/games/gam-12/gam1111.cur), default !important;
+
+}
+
+
+ /* Menu Bar Styling Here */
+.menubar {
+  background-color: #000080;
+  border-bottom: 3px solid #ffff00;
+  padding: 10px 0;
+  font-family: 'Verdana', sans-serif;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* Title floats left but doesn’t mess with layout */
+.menubar > .title {
+  position: absolute;
+  left: 20px;
+}
+
+.menubar h3 {
+  color: #ffff00;
+  margin: 0;
+  padding-inline: 24px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* Link container centers naturally inside .menubar */
+.menubar .links {
+  display: flex;
+  gap: 10px;
+}
+
+.menubar .links a {
+  display: inline-block;
+  padding: 10px 20px;
+  background: linear-gradient(to bottom, #c0c0c0, #808080); /* fake bevel */
+  border: 2px outset #ffffff;
+  color: #000000;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 14px;
+  box-shadow: 2px 2px 0 #333;
+}
+
+.menubar .links a:hover {
+  background: linear-gradient(to bottom, #ffff00, #ffcc00);
+  color: #000;
+  border: 2px inset #ffffff;
+  box-shadow: none;
+}
+
+/* Avatar on the right */
+.menubar > .pfp {
+  position: absolute;
+  right: 20px;
+}
+
+.menubar > .pfp img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #ffff00;
+  object-fit: cover;
+  box-shadow: 0 0 5px #000;
+}
+
+
+
+
+/* Construction Styling Here*/
+
+  .under-construction {
+  padding-top: 30px;
+  text-align: center;
+  background-color: black;
+  border-top: 3px dashed yellow;
+  border-bottom: 3px dashed yellow;
+  }
+
+  .under-construction marquee {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffff00;
+    text-shadow: 0 0 5px red;
+    background: repeating-linear-gradient(
+      45deg,
+      #222,
+      #222 10px,
+      #000 10px,
+      #000 20px
+    );
+    padding: 10px;
+  }
+
+</style>
+</head>
+
+<body> 
+
+   
+
+ 
+    <div class="menubar">
+      <div class="title">
+        <h3>💾HalcyonEcho's Corner of the Web💾</h3>
+      </div>
+      <div class="links">
+        <a href="index.html">Whoami</a>
+        <a href="projects.html">Projects</a>
+        <a href="blog.html">Blogs</a>
+      </div>
+      <div class="pfp">
+        <a href="https://github.com/HalcyonEcho" target="_blank">
+          <img src="https://avatars.githubusercontent.com/u/71548769?v=4" alt="My GitHub">
+        </a>
+      </div>  
+    </div>
+
+    <div class="under-construction">
+      <marquee behavior="scroll" direction="left" scrollamount="10" >
+        🚧🚧🚧 UNDER CONSTRUCTION — COME BACK LATER (OR DON’T) 🚧🚧🚧
+      </marquee>
+    </div>
+
+
+      <div style="display: flex; align-items: center; justify-content: center; gap: 20px; margin: 20px 0;">
+    <p>Here is where i would put my blogs of silly stuff.....</p>
+    <div>
+      <button id="play-btn" style="font-size: 15px; padding: 3px 5px; cursor: pointer;">
+        Unmute Background Music
+      </button>
+      <p id="now-playing" style="margin-block: 8px; font-style: italic; display: none;">
+        Now Playing 🎼 Yume 2kki OST - Bloom 99： TV Channel 6
+      </p>
+    </div>
+  </div>
+
+
+
+
+
+<audio id="bg-music" loop>
+  <source src="audios/Yume 2kki OST - Bloom 99： TV Channel 6.mp3" type="audio/mpeg" />
+</audio>
+
+<script>
+  const btn = document.getElementById('play-btn');
+  const audio = document.getElementById('bg-music');
+  const nowPlaying = document.getElementById('now-playing');
+
+  btn.addEventListener('click', () => {
+    audio.play();
+    btn.style.display = 'none'; // hide button after playing
+    nowPlaying.style.display = 'block';
+  });
+</script>
+
+</body>
+
+<footer style="position: fixed;bottom: 0;width: 100%;background-color: #000080;text-align: center; padding: 20px 0; font-size: 14px; color:#ffff00; border-top: 3px solid #333; margin-top: 40px;">
+  &copy; 2025 @HalcyonEcho &nbsp;|&nbsp; Built with 💻 and a sprinkle of chaos
+</footer>
+
+</html>
+
