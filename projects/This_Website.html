@@ -5,21 +5,27 @@
 <style> 
 /* Default Styling Here*/
 
-/* apply cursor to everything */
-body, * {
-cursor: url(https://cur.cursors-4u.net/games/gam-12/gam1111.cur), default !important;
-}
+
+
+  /* apply cursor to everything */
+  body, * {
+    cursor: url(https://cur.cursors-4u.net/games/gam-12/gam1111.cur), default !important;
+  }
 
 body{
-    background-image: url("https://scontent.fper11-1.fna.fbcdn.net/v/t39.30808-6/489869443_1093676869466482_8511808922905776463_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_ohc=p0KkG6aarXgQ7kNvwFMtQAS&_nc_oc=AdlBL3z4bH3TCzIDoDB4OroEPn1HTe824izIZmSa8o45vi4ENymnVxytDajSZCL4tT_7v35XGwQYoxktYSFPBnLZ&_nc_zt=23&_nc_ht=scontent.fper11-1.fna&_nc_gid=7zSz0RcJEV4_VgwYcxBlGA&oh=00_AfSTMPnXxMUvKbmX14JLM89kolipRSbdakoBlBu56852-w&oe=68743F29");
+    
     background-repeat: repeat;
     background-size: cover;
     background-attachment: fixed;
-    color: rgb(179, 179, 179);
+    color: white;
     margin: 0;
     background-color: black;
     font-family: 'Verdana', sans-serif;
+    
+
 }
+
+
 
 button {
     padding: 10px 20px;
@@ -31,6 +37,8 @@ button {
     font-weight: bold;
     font-size: 14px;
     box-shadow: 2px 2px 0 #333;
+   
+
 }
 
 button:hover {
@@ -38,8 +46,10 @@ button:hover {
   color: #000;
   border: 2px inset #ffffff;
   box-shadow: none;
+ 
 
 }
+
  /* Menu Bar Styling Here */
 .menubar {
   background-color: #000080;
@@ -197,6 +207,27 @@ button:hover {
     opacity: 1;
   }
 
+/* Background Styling Here*/
+  .bkgnd {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: linear-gradient(to bottom, #0c142b, #08195e);
+      z-index: -1; /* 🧽 stay back, background! */
+    }
+  
+  .bkgnd canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+      filter: blur(3px) brightness(2); /* 🌟 stronger glow */
+      z-index: -1;
+    }
+
+
+
 </style>
 </head>
 
@@ -216,6 +247,65 @@ button:hover {
         </a>
       </div>  
     </div>
+  
+      <div class="bkgnd">
+    <canvas id="ps3"></canvas>
+  </div>
+
+  <script>
+    const canvas = document.getElementById("ps3");
+    const ctx = canvas.getContext("2d");
+
+    let w, h;
+    function resize() {
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = window.innerHeight;
+    }
+    window.addEventListener("resize", resize);
+    resize();
+
+    const layers = [];
+    const colors = [
+      "rgba(130,180,255,0.25)",
+      "rgba(160,200,255,0.25)",
+      "rgba(100,150,255,0.2)",
+      "rgba(180,220,255,0.2)",
+    ];
+
+    for (let i = 0; i < 4; i++) {
+      layers.push({
+        amplitude: 35 + i * 10,
+        wavelength: 300 + i * 40,
+        speed: 0.05 + i * 0.02,
+        offset: i * 120,
+        color: colors[i % colors.length],
+        heightOffset: window.innerHeight / 2 + (i - 1.5) * 40,
+      });
+    }
+
+    function drawWave(layer, time) {
+      const { amplitude, wavelength, speed, offset, color, heightOffset } = layer;
+      ctx.beginPath();
+      for (let x = 0; x <= w; x += 1) {
+        const y = heightOffset + Math.sin((x + time * speed + offset) / wavelength) * amplitude;
+        if (x === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      }
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 2;
+      ctx.stroke();
+    }
+
+    function animate(time) {
+      ctx.clearRect(0, 0, w, h);
+      layers.forEach(layer => drawWave(layer, time));
+      requestAnimationFrame(animate);
+    }
+
+    requestAnimationFrame(animate);
+  </script>
+
+
 
 
   <div class="body" >
@@ -262,6 +352,30 @@ button:hover {
 
   </div>
 
+
+
+
+    
+
+        
+      
+
+
+
+
+        
+
+
+
+    
+
+
+
+ 
+
+
+
+  
 </body>
 
 <footer style="position: fixed;bottom: 0;width: 100%;background-color: #000080;text-align: center; padding: 20px 0; font-size: 14px; color:#ffff00; border-top: 3px solid #333; margin-top: 40px;">
