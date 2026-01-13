@@ -258,19 +258,13 @@ footer {
         </div>
         </div>
 
-        <!-- HERO -->
-        <section class="hero">
-        <div class="aero">
-            <h1>🛠️ Projects 🛠️</h1>
-            <p>A collection of my live projects hosted on this site.</p>
-        </div>
-        </section>
+
 
         <!-- LIVE PROJECTS -->
         <section class="section live-projects">
         <div class="aero">
-            <h2>Live Projects</h2>
-            <p>pulled straight from the repo.</p>
+            <h2>🛠️ Live Projects 🛠️</h2>
+            <p>These are pulled straight from the repo.</p>
             <ul id="projects-list" class="projects-grid"></ul>
         </div>
         </section>
@@ -292,7 +286,7 @@ footer {
     if (file.type !== 'file') continue;
     const li = document.createElement('li');
     li.classList.add('aero'); // glow-up card
-    li.innerHTML = `<a href="${file.path}" target="_blank">${file.name}</a><span>project</span>`;
+    li.innerHTML = `<a href="${file.path}" target="_blank">${file.name}</a>`;
     list.appendChild(li);
   }
 })();
