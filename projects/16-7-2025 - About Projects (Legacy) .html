@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> Projects </title> 
+<style> 
+/* Default Styling Here*/
+
+
+
+  /* apply cursor to everything */
+  body, * {
+    cursor: url(https://cur.cursors-4u.net/games/gam-12/gam1111.cur), default !important;
+  }
+
+body{
+    
+    background-repeat: repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    color: white;
+    margin: 0;
+    background-color: black;
+    font-family: 'Verdana', sans-serif;
+    
+
+}
+
+
+
+button {
+    padding: 10px 20px;
+    margin: 0 5px;
+    background: linear-gradient(to bottom, #c0c0c0, #808080); /* fake bevel */
+    border: 2px outset #ffffff;
+    color: #000000;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+    box-shadow: 2px 2px 0 #333;
+   
+
+}
+
+button:hover {
+  background: linear-gradient(to bottom, #ffff00, #ffcc00);
+  color: #000;
+  border: 2px inset #ffffff;
+  box-shadow: none;
+ 
+
+}
+
+ /* Menu Bar Styling Here */
+.menubar {
+  background-color: #000080;
+  border-bottom: 3px solid #ffff00;
+  padding: 10px 0;
+  font-family: 'Verdana', sans-serif;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* Title floats left but doesn’t mess with layout */
+.menubar > .title {
+  position: absolute;
+  left: 20px;
+}
+
+.menubar h3 {
+  color: #ffff00;
+  margin: 0;
+  padding-inline: 24px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* Link container centers naturally inside .menubar */
+.menubar .links {
+  display: flex;
+  gap: 10px;
+}
+
+.menubar .links a {
+  display: inline-block;
+  padding: 10px 20px;
+  background: linear-gradient(to bottom, #c0c0c0, #808080); /* fake bevel */
+  border: 2px outset #ffffff;
+  color: #000000;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 14px;
+  box-shadow: 2px 2px 0 #333;
+}
+
+.menubar .links a:hover {
+  background: linear-gradient(to bottom, #ffff00, #ffcc00);
+  color: #000;
+  border: 2px inset #ffffff;
+  box-shadow: none;
+}
+
+/* Avatar on the right */
+.menubar > .pfp {
+  position: absolute;
+  right: 20px;
+}
+
+.menubar > .pfp img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #ffff00;
+  object-fit: cover;
+  box-shadow: 0 0 5px #000;
+}
+
+
+/* Body Styling Here*/
+    .body {
+        background: #e0e0e0;
+        border: 3px ridge #fff;
+        padding: 20px;
+        max-width: 600px;
+        margin: auto;
+        box-shadow: 4px 4px 0 #999;
+        color: #000000;
+        margin-top: 40px;
+        margin-bottom: 100px;
+    }
+  .post {
+    border-bottom: 1px dotted #999; /* classic dotted line */
+    padding: 15px 0;
+    overflow: auto; /* clear floats */
+  }
+  .post .title {
+    text-decoration: none;
+    color: #000000;
+    font-weight: bold;
+    font-size: 1.9rem;
+    text-align:left;
+    border-bottom: 2px dotted #999;
+    padding-top: 10px;
+  }
+  .post img {
+    position: relative;
+    display: block;
+    margin: auto;
+    width: 50%;
+    align-self: center;
+    max-width: 600px;
+    height: auto;
+    border: 2px solid #ccc;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+  }
+  .post .date {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 5px;
+    text-align:left
+  }
+
+  .post .author {
+    font-size: 1rem;
+    color: #000000;
+    margin-bottom: 5px;
+    text-align:left;
+    font-weight: bold;
+    border-bottom: 2px dotted #999;
+  }
+  .post .subtitle {
+    text-decoration: none;
+    color: #1e8eff;
+    font-size: 1.3rem;
+    text-align:center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  .post .text{
+    font-size: 1.2rem;
+    line-height: 1.4;
+  }
+
+
+  .post .tooltip {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  top: calc(100% + 6px); /* right below the image */
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ffffcc;
+  border: 1px solid #000;
+  padding: 4px 8px;
+  font-size: 12px;
+  white-space: nowrap;
+  transition: opacity 0.3s ease;
+  z-index: 999;
+  color: #000;
+  text-shadow: none;
+  }
+
+  .post img:hover + .tooltip {
+    visibility: visible;
+    opacity: 1;
+  }
+
+/* Background Styling Here*/
+  .bkgnd {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: linear-gradient(to bottom, #0c142b, #08195e);
+      z-index: -1; /* 🧽 stay back, background! */
+    }
+  
+  .bkgnd canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+      filter: blur(3px) brightness(2); /* 🌟 stronger glow */
+      z-index: -1;
+    }
+
+
+
+</style>
+</head>
+
+<body> 
+    <div class="menubar">
+      <div class="title">
+        <h3>💾HalcyonEcho's Corner of the Web💾</h3>
+      </div>
+      <div class="links">
+        <a href="../../index.html">Whoami</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../../blogs/blogs.html">Blogs</a>
+      </div>
+      <div class="pfp">
+        <a href="https://github.com/HalcyonEcho" target="_blank">
+          <img src="https://avatars.githubusercontent.com/u/71548769?v=4" alt="My GitHub">
+        </a>
+      </div>  
+    </div>
+  
+      <div class="bkgnd">
+    <canvas id="ps3"></canvas>
+  </div>
+
+  <script>
+    const canvas = document.getElementById("ps3");
+    const ctx = canvas.getContext("2d");
+
+    let w, h;
+    function resize() {
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = window.innerHeight;
+    }
+    window.addEventListener("resize", resize);
+    resize();
+
+    const layers = [];
+    const colors = [
+      "rgba(130,180,255,0.25)",
+      "rgba(160,200,255,0.25)",
+      "rgba(100,150,255,0.2)",
+      "rgba(180,220,255,0.2)",
+    ];
+
+    for (let i = 0; i < 4; i++) {
+      layers.push({
+        amplitude: 35 + i * 10,
+        wavelength: 300 + i * 40,
+        speed: 0.05 + i * 0.02,
+        offset: i * 120,
+        color: colors[i % colors.length],
+        heightOffset: window.innerHeight / 2 + (i - 1.5) * 40,
+      });
+    }
+
+    function drawWave(layer, time) {
+      const { amplitude, wavelength, speed, offset, color, heightOffset } = layer;
+      ctx.beginPath();
+      for (let x = 0; x <= w; x += 1) {
+        const y = heightOffset + Math.sin((x + time * speed + offset) / wavelength) * amplitude;
+        if (x === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      }
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 2;
+      ctx.stroke();
+    }
+
+    function animate(time) {
+      ctx.clearRect(0, 0, w, h);
+      layers.forEach(layer => drawWave(layer, time));
+      requestAnimationFrame(animate);
+    }
+
+    requestAnimationFrame(animate);
+  </script>
+
+
+
+
+
+
+
+      <div class="body" >
+    <h1 style="text-align: center; border-bottom: 2px dotted #999;  padding-bottom: 10px; margin-bottom: 0;">About Projects....</h1>
+
+    <!--Body of post-->
+
+    <div class="post">
+        <div class="date"> July 16 2025 </div>
+        <div class="author"> By HalcyonEcho</div>
+
+        <div class="subtitle"><i>"Pfft I'm NOT gonna use a CMS..... "</i></div>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Palm_Mall_%28_%E7%8C%AB_%E3%82%B7_Corp.%29.jpg/250px-Palm_Mall_%28_%E7%8C%AB_%E3%82%B7_Corp.%29.jpg" />
+      <div class="tooltip">💬 Cool ass album</div>
+      <div class="text"> 
+          <p>Upon the conception of this site, I was rather conflicted as to if I were to merge the general blog and 🛠️✨Projects✨🛠️ section, but I decided to seperate it to provide not only 3 tabs, but to also seperate my serious projects with 'silly stuff'.</p>
+        </div>
+        
+      <div class="title">Introduction of the Tab</div>
+        <div class="text"> 
+          <p> The 🛠️✨Projects✨🛠️ Tab mainly shows my side projects I do at home,
+            from the occasional homelab update to the occasionally specific program
+            that may only solve problems that I've got. This tab mainly shows my silly 
+            experiments, prototypes or any janky hardware/software implementations. Expect a 
+            blend of tech, eccentricity and madness! 💡💻
+          </div>
+          </p>
+      <div class="title">Projects tab workflow</div>
+          <div class="text"> 
+            <p> 
+              Originally, I WAS gonna try and use a content management system (CMS) for this 
+              section of the site, but, in theme of the janky era of the internet, I decided 
+              <i>"Why not just make the 🛠️✨Projects✨🛠️ tab a Hub to different html files?"</i> 
+              , hence its current state.
+          </p>
+           </div>
+      <div class="title">Conculsion</div>
+          <div class="text"> 
+            <p> 
+             These projects aren’t just things I made—they’re snapshots of who I was when I made them. 
+             Some are messy, most are unfinished, but all of them taught me something. And that’s the whole point.
+          </p>
+           </div>
+    <p style="font-size: 0.75rem; color: #000000; text-align: center; margin-top: 3em; ">
+      You’ve reached the end! 🌌
+    </p>
+
+        
+      
+
+
+
+
+        
+
+
+
+    </div>
+
+
+
+    <!-- Posts End Here -->
+
+  </div>
+
+    
+
+
+
+    <!-- Posts End Here -->
+
+  </div>
+
+
+
+  
+</body>
+
+<footer style="position: fixed;bottom: 0;width: 100%;background-color: #000080;text-align: center; padding: 20px 0; font-size: 14px; color:#ffff00; border-top: 3px solid #333; margin-top: 40px;">
+  &copy; 2025 @HalcyonEcho &nbsp;|&nbsp; Built with 💻 and a sprinkle of chaos
+</footer>
+
+</html>
+
