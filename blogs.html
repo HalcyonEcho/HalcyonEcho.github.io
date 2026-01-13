@@ -164,6 +164,8 @@ footer {
     const list = document.getElementById('blogs-list');
     list.innerHTML = '';
 
+    const baseURL = 'https://halcyonecho.github.io/blogs/'; // GitHub Pages URL
+
     for (let file of data) {
       if (file.type !== 'file') continue;
 
@@ -175,7 +177,7 @@ footer {
         <div class="post-content">
           <div class="post-meta">Blog Post</div>
           <h2>
-            <a href="${file.html_url}" target="_blank">
+            <a href="${baseURL + file.name}" target="_blank">
               ${file.name.replace(/\.md|\.html/,'')}
             </a>
           </h2>
