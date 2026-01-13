@@ -4,8 +4,6 @@
 <meta charset="UTF-8">
 <title>Projects!</title>
 <style>
-/* === FULL CSS FROM YOUR FILE === */
-
 /* cursor */
 body, * {
   cursor: url(https://cur.cursors-4u.net/cursors/cur-11/cur1054.cur), default !important;
@@ -237,47 +235,93 @@ footer {
   box-shadow:0 -6px 18px rgba(0,0,0,0.16), inset 0 1px 0 rgba(255,255,255,0.8);
 }
 
+.doc-section { max-width:900px; margin:50px auto; padding:30px; background:linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.55)); border-radius:16px; backdrop-filter: blur(18px); border:1px solid rgba(255,255,255,0.8); box-shadow: 0 12px 36px rgba(0,0,0,0.14); }
+.doc-section h2 { margin-bottom:16px; }
+.doc-section p, .doc-section pre { margin-bottom:16px; font-size:1rem; line-height:1.5; color: var(--text-main); }
+pre { background: rgba(0,0,0,0.05); padding:12px; border-radius:8px; overflow-x:auto; }
+code { font-family: monospace; }
+.doc-screenshot { max-width:100%; border-radius:12px; border:1px solid rgba(0,0,0,0.15); margin-bottom:16px; box-shadow: 0 4px 12px rgba(0,0,0,0.12); }
 </style>
 </head>
 <body>
-    <div id="page-wrapper">
-        <!--TOP NAV -->
-        <div class="topbar">
-        <div class="title">
-            <h3>💾 HalcyonEcho's Corner of the Web 💾</h3>
-        </div>
-        <div class="links">
-            <a href="index.html" class="btn">Whoami</a>
-            <a href="projects.html" class="btn">Projects</a>
-            <a href="blogs.html" class="btn">Blogs</a>
-        </div>
-        <div class="pfp">
-            <a href="https://github.com/HalcyonEcho" target="_blank">
-            <img src="https://avatars.githubusercontent.com/u/71548769?v=4" alt="My GitHub">
-            </a>
-        </div>
-        </div>
+<div id="page-wrapper">
 
-
-
-        <!-- LIVE PROJECTS -->
-        <section class="section live-projects">
-        <div class="aero">
-            <h2>🛠️ Live Projects 🛠️</h2>
-            <p>These are pulled straight from the repo.</p>
-         
-
-            
-        </div>
-        </section>
+<!--TOP NAV -->
+<div class="topbar">
+    <div class="title">
+        <h3>💾 HalcyonEcho's Corner of the Web 💾</h3>
     </div>
-    
-    <!-- FOOTER -->
-    <footer>
-    Last Updated: early 2026 &nbsp;|&nbsp; Made with ☕️ by HalcyonEcho
-    </footer>
+    <div class="links">
+        <a href="../index.html" class="btn">Whoami</a>
+        <a href="../projects.html" class="btn">Projects</a>
+        <a href="../blogs.html" class="btn">Blogs</a>
+    </div>
+    <div class="pfp">
+        <a href="https://github.com/HalcyonEcho" target="_blank">
+            <img src="https://avatars.githubusercontent.com/u/71548769?v=4" alt="My GitHub">
+        </a>
+    </div>
 </div>
 
+<!-- HERO -->
+<section class="hero">
+    <div class="aero">
+        <h1>Custom Python Hash Algorithm SAMPLE FORMAT</h1>
+        <p>My quirky, small-scale hash algorithm with custom padding & variable input size. Fun for learning & experimentation!</p>
+    </div>
+</section>
 
+<!-- PROJECT DOCUMENTATION -->
+<section class="doc-section">
+    <h2>Description</h2>
+    <p>This project is a small, educational hash algorithm written in Python. It accepts variable-length input and applies a custom padding marker <code>\xBE\xEE</code>. Designed for experimentation, it produces at least 20-bit outputs.</p>
+</section>
+
+<section class="doc-section">
+    <h2>Features</h2>
+    <ul>
+        <li>Variable-length input handling</li>
+        <li>Custom signature padding (<code>\xBE\xEE</code>)</li>
+        <li>Compact, educational output</li>
+        <li>Easy to extend and experiment with</li>
+    </ul>
+</section>
+
+<section class="doc-section">
+    <h2>Installation</h2>
+    <p>Clone the repository and run with Python 3:</p>
+    <pre><code>git clone https://github.com/HalcyonEcho/custom-hash.git
+cd custom-hash
+python3 custom_hash.py "your message here"</code></pre>
+</section>
+
+<section class="doc-section">
+    <h2>Usage</h2>
+    <p>Run the script with a message argument to get the hash:</p>
+    <pre><code>python3 custom_hash.py "Hello world!"</code></pre>
+    <p>Output will be a small, fixed-length hash for demonstration purposes.</p>
+</section>
+
+<section class="doc-section">
+    <h2>Screenshots / Example</h2>
+    <img src="screenshot.png" alt="Example Output" class="doc-screenshot">
+    <p>This shows the algorithm in action generating a hash for the string "Hello world!"</p>
+</section>
+
+<section class="doc-section">
+    <h2>Notes / Next Steps</h2>
+    <ul>
+        <li>Consider adding collision testing to evaluate uniqueness.</li>
+        <li>Integrate into small CTF or learning challenges.</li>
+        <li>Possibly expand hash size or complexity for more advanced experimentation.</li>
+    </ul>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    Last Updated: early 2026 &nbsp;|&nbsp; Made with ☕️ by HalcyonEcho
+</footer>
+
+</div>
 </body>
 </html>

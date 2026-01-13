@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blogs</title>
+<style>
+/* === KEEP YOUR ORIGINAL CSS === */
+body {
+    background: #1c1c1c url('https://www.transparenttextures.com/patterns/asfalt-dark.png') repeat;
+    font-family: 'Trebuchet MS', sans-serif;
+    color: #eee;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background: #2a2a2a;
+    padding: 25px 0;
+    text-align: center;
+    font-size: 2.8em;
+    color: #f4c542;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 0 #000;
+    border-bottom: 3px solid #444;
+}
+
+nav {
+    background: #262626;
+    padding: 10px 0;
+    text-align: center;
+}
+
+nav a {
+    color: #f4c542;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 0 15px;
+    font-size: 1.1em;
+}
+
+nav a:hover { color: #fff; }
+
+footer {
+    background: #2a2a2a;
+    color: #aaa;
+    text-align: center;
+    padding: 15px;
+    border-top: 3px solid #444;
+    font-size: 0.9em;
+}
+
+/* === New Styles for Single Blog Post === */
+.blog-post {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 30px;
+    background: #2f2f2f;
+    border-left: 5px solid #f4c542;
+    border-radius: 8px;
+    box-shadow: 2px 2px 10px #000;
+}
+
+.blog-post h1 {
+    margin-top: 0;
+    font-size: 2em;
+    color: #f4c542;
+    text-shadow: 1px 1px 0 #000;
+}
+
+.blog-meta {
+    font-size: 0.9em;
+    color: #aaa;
+    margin-bottom: 20px;
+}
+
+.blog-content p {
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.blog-content pre {
+    background: #1c1c1c;
+    padding: 12px;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-family: monospace;
+    margin-bottom: 15px;
+}
+
+.blog-content img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #444;
+}
+
+.blog-content ul {
+    margin-left: 20px;
+    margin-bottom: 15px;
+}
+</style>
+</head>
+<body>
+
+<header>HalcyonEcho's Corner of the Web</header>
+
+<nav>
+    <a href="../index.html" class="btn">Whoami</a>
+    <a href="../projects.html" class="btn">Projects</a>
+    <a href="../blogs.html" class="btn">Blogs</a>
+    <a href="https://github.com/HalcyonEcho" class="btn">Github</a>
+</nav>
+
+<!-- Single Blog Post -->
+<article class="blog-post">
+    <h1>SAMPLE POST Understanding USB-C Types: A Quick Guide SAMPLE POST</h1>
+    <div class="blog-meta">Published: Jan 13, 2026  | Tags: Hardware, USB-C, Tech</div>
+    
+    <div class="blog-content">
+        <p>USB-C has become the universal connector for everything, from phones to laptops to monitors. But not all USB-C ports are created equal. Let’s break down the types, speeds, and capabilities so you don’t get burned by slow cables or limited ports.</p>
+        
+        <h2>1. USB 2.0 over USB-C</h2>
+        <p>The simplest type: USB 2.0 speed (480 Mbps) in a USB-C shape. Often used in keyboards, mice, or cheap hubs. Don’t expect fast data transfers here.</p>
+        
+        <h2>2. USB 3.x / 3.1 / 3.2</h2>
+        <p>These support faster data transfer:</p>
+        <ul>
+            <li>USB 3.1 Gen 1 → 5 Gbps</li>
+            <li>USB 3.1 Gen 2 → 10 Gbps</li>
+            <li>USB 3.2 → up to 20 Gbps (with dual-lane cables)</li>
+        </ul>
+        <p>Look for the “SS” (SuperSpeed) logo or “10/20 Gbps” marking.</p>
+        
+        <h2>3. Thunderbolt 3 & 4</h2>
+        <p>Thunderbolt is a superset of USB-C:</p>
+        <ul>
+            <li>Thunderbolt 3 → 40 Gbps, can drive 2 4K monitors</li>
+            <li>Thunderbolt 4 → same speed, but stricter hardware requirements</li>
+            <li>Also supports PCIe and daisy-chaining devices</li>
+        </ul>
+        <p>Thunderbolt ports usually have a little lightning bolt icon.</p>
+        
+        <h2>4. Power Delivery (PD)</h2>
+        <p>USB-C can deliver much more power than old USB-A:</p>
+        <ul>
+            <li>Standard USB-C PD → up to 100W</li>
+            <li>Phones/laptops negotiate how much power to draw</li>
+        </ul>
+        <p>Not all USB-C ports provide full PD, so check your laptop or charger specs.</p>
+        
+        <h2>Quick Tips</h2>
+        <ul>
+            <li>Don’t assume every USB-C cable supports fast charging or high-speed data.</li>
+            <li>Thunderbolt 3/4 cables are backward compatible but expensive.</li>
+            <li>Check device manuals for port capabilities before buying peripherals.</li>
+        </ul>
+        
+        <h2>Example: Checking Your USB-C Port on Linux</h2>
+        <pre><code>lsusb -t
+# or for Thunderbolt devices
+boltctl</code></pre>
+        <p>This helps identify what your port actually supports.</p>
+        
+        <img src="usb_c_types.png" alt="USB-C Types Diagram">
+        <p>Diagram showing the differences between USB-C, USB 3.x, and Thunderbolt ports.</p>
+    </div>
+</article>
+
+<footer>Last Updated: early 2026 HalcyonEcho. Made with 📀.</footer>
+
+</body>
+</html>
