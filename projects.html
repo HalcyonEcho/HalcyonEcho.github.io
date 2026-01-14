@@ -201,7 +201,7 @@ a:hover { text-decoration:underline; }
 .hero .aero:hover { transform:translateY(-4px); box-shadow: inset 0 1px 0 rgba(255,255,255,0.95), 0 18px 48px rgba(0,0,0,0.18), 0 0 28px rgba(255,255,255,0.12); }
 
 /* LIVE PROJECTS */
-.live-projects { margin-top:60px; margin-bottom:60px; }
+.live-projects { margin-top:10px; margin-bottom:60px; }
 .live-projects .aero { padding:40px 36px; border-radius:16px; background:linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.55)); backdrop-filter: blur(20px); border:1px solid rgba(255,255,255,0.8); box-shadow: inset 0 1px 0 rgba(255,255,255,0.9), 0 12px 36px rgba(0,0,0,0.14); text-align:center; max-width:1000px; margin:0 auto; }
 .live-projects h2 { font-size:2rem; font-weight:600; margin:0 0 16px; line-height:1.2; color: var(--text-main); text-shadow:0 1px 2px rgba(255,255,255,0.6); }
 .live-projects p { margin:0 0 32px; font-size:1.05rem; line-height:1.6; opacity:0.8; }
@@ -266,6 +266,32 @@ footer {
             <h2>🛠️ Live Projects 🛠️</h2>
             <p>These are pulled straight from the repo.</p>
             <ul id="projects-list" class="projects-grid"></ul>
+            <!--Script that loads projects from the projects folder -->
+            <script>
+            (async () => {
+              try {
+                const response = await fetch('https://api.github.com/repos/HalcyonEcho/HalcyonEcho.github.io/contents/projects');
+                const data = await response.json();
+                const list = document.getElementById('projects-list');
+                list.innerHTML = '';
+
+                const baseURL = 'https://halcyonecho.github.io/projects/'; // GitHub Pages URL for projects
+
+                for (let file of data) {
+                  if (file.type !== 'file') continue;
+
+                  const li = document.createElement('li');
+                  li.classList.add('aero'); // glow-up card
+                  li.innerHTML = `<a href="${baseURL + file.name}" target="_blank">${file.name.replace(/\.html|\.md/,'')}</a>`;
+                  list.appendChild(li);
+                }
+              } catch(e) {
+                console.error('Failed to load projects:', e);
+                const list = document.getElementById('projects-list');
+                list.innerHTML = `<li style="color:red;">Failed to load projects.</li>`;
+              }
+            })();
+            </script>
         </div>
         </section>
     </div>
@@ -275,32 +301,7 @@ footer {
     Last Updated: early 2026 &nbsp;|&nbsp; Made with ☕️ by HalcyonEcho
     </footer>
 </div>
-<!-- SCRIPT -->
-<script>
-(async () => {
-  try {
-    const response = await fetch('https://api.github.com/repos/HalcyonEcho/HalcyonEcho.github.io/contents/projects');
-    const data = await response.json();
-    const list = document.getElementById('projects-list');
-    list.innerHTML = '';
 
-    const baseURL = 'https://halcyonecho.github.io/projects/'; // GitHub Pages URL for projects
-
-    for (let file of data) {
-      if (file.type !== 'file') continue;
-
-      const li = document.createElement('li');
-      li.classList.add('aero'); // glow-up card
-      li.innerHTML = `<a href="${baseURL + file.name}" target="_blank">${file.name.replace(/\.html|\.md/,'')}</a>`;
-      list.appendChild(li);
-    }
-  } catch(e) {
-    console.error('Failed to load projects:', e);
-    const list = document.getElementById('projects-list');
-    list.innerHTML = `<li style="color:red;">Failed to load projects.</li>`;
-  }
-})();
-</script>
 
 
 </body>
