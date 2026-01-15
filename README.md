@@ -12,8 +12,7 @@ The site includes a sleek **cyber bootup animation** before launching into the m
 ### Features
 
 - **Bootup Screen:** Futuristic "LOADING" animation built with CSS3 keyframes and Orbitron font.
-- **Dynamic Blog Fetcher:** Automatically pulls posts from the `/blogs` directory through GitHub’s content API.
-- **Minimal‑Cyberpunk Theme:** Metallic accents with deep blacks, neon gold highlights, and textured backgrounds.
+- **Dynamic Blog and Projects Fetcher:** Automatically pulls posts from the `/blogs` or `/projects`  directory through GitHub’s content API.
 - **Cursor Customization:** A custom pointer adds personality to each interaction.
 - **Responsive Layout:** Designed for readability across desktop and mobile devices.
 
