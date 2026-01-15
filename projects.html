@@ -376,7 +376,7 @@ footer {
 
                   const li = document.createElement('li');
                   li.classList.add('aero'); // glow-up card
-                  li.innerHTML = `<a href="${baseURL + file.name}" target="_blank">${file.name.replace(/\.html|\.md/,'')}</a>`;
+                  li.innerHTML = `<a href="${baseURL + encodeURIComponent(file.name)}" target="_blank">${file.name.replace(/\.html|\.md/,'')}</a>`;
                   list.appendChild(li);
                 }
               } catch(e) {
