@@ -93,63 +93,62 @@ button:hover {
 
 /* Menu Bar Styling Here*/
 
-/* ===== TOP BAR (DESKTOP + MOBILE SAFE) ===== */
+ /* Menu Bar Styling Here */
 .menubar {
   background-color: #000080;
   border-bottom: 3px solid #ffff00;
-  padding: 10px 16px;
+  padding: 10px 0;
   font-family: 'Verdana', sans-serif;
 
-  display: grid;
-  grid-template-columns: auto 1fr auto;
+  display: flex;
   align-items: center;
-
-  width: 100vw;
-  max-width: 100%;
-  box-sizing: border-box;
+  justify-content: center;
+  position: relative;
 }
 
-/* Left title */
+/* Title floats left but doesn’t mess with layout */
 .menubar > .title {
-  justify-self: start;
+  position: absolute;
+  left: 20px;
 }
 
 .menubar h3 {
   color: #ffff00;
   margin: 0;
+  padding-inline: 24px;
   font-size: 16px;
   font-weight: bold;
 }
 
-/* Center links */
+/* Link container centers naturally inside .menubar */
 .menubar .links {
   display: flex;
   gap: 10px;
-  justify-content: center;
-  flex-wrap: nowrap;
 }
 
 .menubar .links a {
+  display: inline-block;
   padding: 10px 20px;
-  background: linear-gradient(to bottom, #c0c0c0, #808080);
+  background: linear-gradient(to bottom, #c0c0c0, #808080); /* fake bevel */
   border: 2px outset #ffffff;
-  color: #000;
+  color: #000000;
+  text-decoration: none;
   font-weight: bold;
   font-size: 14px;
-  text-decoration: none;
   box-shadow: 2px 2px 0 #333;
-  white-space: nowrap;
 }
 
 .menubar .links a:hover {
   background: linear-gradient(to bottom, #ffff00, #ffcc00);
+  color: #000;
   border: 2px inset #ffffff;
   box-shadow: none;
 }
 
-/* Right avatar */
+/* Avatar on the right */
 .menubar > .pfp {
-  justify-self: end;
+  position: absolute;
+  right: 20px;
 }
 
 .menubar > .pfp img {
@@ -160,6 +159,7 @@ button:hover {
   object-fit: cover;
   box-shadow: 0 0 5px #000;
 }
+
 
 
 
