@@ -258,41 +258,43 @@ button:hover {
 /* ===== MOBILE BREAKPOINT ===== */
 @media (max-width: 1470px) {
 
+
   .menubar {
-    grid-template-columns: 1fr;
-    row-gap: 10px;
-    text-align: center;
-    width: 100%;
+    flex-direction: column;       /* stack title + links */
+    align-items: center;           /* center everything */
+    padding: 20px 10px;            /* more vertical spacing */
+    height: auto;                  /* allow height to expand */
+    justify-content: center;
+  }
+
+  /* Title */
+  .menubar > .title {
+    position: static;              /* cancel absolute positioning */
+    margin-bottom: 15px;           /* space below title */
   }
 
   .menubar h3 {
-    color: #ffff00;
-    margin: 0;
-    font-size: 50px;
-    font-weight: bold;
+    font-size: 36px;               /* scale title */
+    padding: 0;                    /* remove desktop padding-inline */
+    text-align: center;
   }
 
-  .menubar > .title {
-    justify-self: center;
-  }
-
+  /* Links */
   .menubar .links {
-    flex-wrap: wrap;
-    justify-content: flex;
-    gap: 70px;
+    flex-wrap: wrap;               /* allow buttons to wrap */
+    justify-content: center;       /* center links horizontally */
+    gap: 15px;
   }
 
   .menubar .links a {
-    padding: 8px 14px;
-    font-size: 35px;
+    padding: 12px 16px;            /* slightly smaller for mobile */
+    font-size: 22px;               /* fit under title nicely */
   }
 
-
-  /* hide the profile pic on mobile */
+  /* Hide avatar on mobile */
   .menubar > .pfp {
     display: none;
   }
-
   .body {
     background: #e0e0e0;
     border: 2px ridge #fff;
