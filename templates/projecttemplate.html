@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <title>Projects!</title>
 <style>
+
+
 /* cursor */
 body, * {
   cursor: url(https://ani.cursors-4u.net/food/foo-7/foo656.cur), default !important;
@@ -199,7 +201,7 @@ a:hover { text-decoration:underline; }
 .hero .aero:hover { transform:translateY(-4px); box-shadow: inset 0 1px 0 rgba(255,255,255,0.95), 0 18px 48px rgba(0,0,0,0.18), 0 0 28px rgba(255,255,255,0.12); }
 
 /* LIVE PROJECTS */
-.live-projects { margin-top:60px; margin-bottom:60px; }
+.live-projects { margin-top:10px; margin-bottom:60px; }
 .live-projects .aero { padding:40px 36px; border-radius:16px; background:linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.55)); backdrop-filter: blur(20px); border:1px solid rgba(255,255,255,0.8); box-shadow: inset 0 1px 0 rgba(255,255,255,0.9), 0 12px 36px rgba(0,0,0,0.14); text-align:center; max-width:1000px; margin:0 auto; }
 .live-projects h2 { font-size:2rem; font-weight:600; margin:0 0 16px; line-height:1.2; color: var(--text-main); text-shadow:0 1px 2px rgba(255,255,255,0.6); }
 .live-projects p { margin:0 0 32px; font-size:1.05rem; line-height:1.6; opacity:0.8; }
@@ -235,75 +237,149 @@ footer {
   box-shadow:0 -6px 18px rgba(0,0,0,0.16), inset 0 1px 0 rgba(255,255,255,0.8);
 }
 
-.doc-section { max-width:900px; margin:50px auto; padding:30px; background:linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.55)); border-radius:16px; backdrop-filter: blur(18px); border:1px solid rgba(255,255,255,0.8); box-shadow: 0 12px 36px rgba(0,0,0,0.14); }
-.doc-section h2 { margin-bottom:16px; }
-.doc-section p, .doc-section pre { margin-bottom:16px; font-size:1rem; line-height:1.5; color: var(--text-main); }
-pre { background: rgba(0,0,0,0.05); padding:12px; border-radius:8px; overflow-x:auto; }
-code { font-family: monospace; }
-.doc-screenshot { max-width:100%; border-radius:12px; border:1px solid rgba(0,0,0,0.15); margin-bottom:16px; box-shadow: 0 4px 12px rgba(0,0,0,0.12); }
 
+/* ===== MOBILE BREAKPOINT ===== */
+@media (max-width: 1470px) {
+
+ /* Make topbar elements stack vertically */
+  .topbar {
+    position: relative;       /* remove absolute conflicts */
+    display: flex;
+    flex-direction: column;   /* stack title, links, pfp */
+    align-items: center;      /* center everything */
+    gap: 10px;
+    padding: 10px 0;
+  }
+
+  /* Title centered on top */
+  .topbar > .title {
+    position: static;         /* remove float/absolute */
+    left: auto;
+    top: auto;
+  }
+
+  .topbar .title h3 {
+    font-size: 1.2rem;        /* scale up for mobile visibility */
+    white-space: normal;      /* allow wrapping */
+    text-align: center;
+    padding: 8px 16px;
+    font-size: 50px;
+  }
+
+  /* Links below title */
+  .topbar .links {
+    justify-content: center;   /* center links horizontally */
+    flex-wrap: wrap;           /* allow wrapping on small screens */
+    gap: 10px;                 /* smaller spacing */
+    font-size: 35px;
+  }
+
+  /* hide the profile pic on mobile */
+  .topbar > .pfp {
+    display: none;
+  }
+
+
+  .section.live-projects h2 {
+    font-size: 76px;             /* scale down for mobile */
+  }
+
+  .section.live-projects p {
+    font-size: 35px;             /* smaller text on mobile */
+  }
+
+
+    /* Outer container */
+  .section.live-projects .aero {
+    padding: 12px;              /* smaller padding */
+    border-radius: 10px;        /* slightly smaller corners */
+    backdrop-filter: blur(18px); 
+  }
+
+  /* Project list grid */
+  #projects-list.projects-grid {
+    display: grid;              /* keep grid layout */
+    grid-template-columns: 1fr; /* 1 card per row on mobile */
+    gap: 16px;                  /* spacing between project cards */
+    padding: 20px;
+    margin: 0;
+    list-style: none;
+  }
+
+  /* Individual project cards */
+  #projects-list li.aero {
+    padding: 60px;              /* smaller padding */
+    border-radius: 10px;        /* match outer aero styling */
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.7),
+      inset 0 -1px 0 rgba(255,255,255,0.25),
+      0 8px 20px rgba(0,0,0,0.12);
+  }
+
+  /* Links inside cards */
+  #projects-list li.aero a {
+    font-size: 35px;
+    word-break: break-word;     /* avoid overflow on long names */
+    text-decoration: none;
+    color: #000;
+  }
+
+    footer {
+    font-size: 35px;       /* smaller text */
+    padding: 20px 10px;     /* reduce vertical padding */
+  }
+
+}
 
 </style>
 </head>
 <body>
 <div id="page-wrapper">
-
-<!--TOP NAV -->
-<div class="topbar">
-    <div class="title">
-        <h3>💾 HalcyonEcho's Corner of the Web 💾</h3>
+    <!--TOP NAV -->
+    <div class="topbar">
+        <div class="title">
+            <h3>💾 HalcyonEcho's Corner of the Web 💾</h3>
+        </div>
+        <div class="links">
+            <a href="../index.html" class="btn">Whoami</a>
+            <a href="../projects.html" class="btn">Projects</a>
+            <a href="../blogs.html" class="btn">Blogs</a>
+        </div>
+        <div class="pfp">
+            <a href="https://github.com/HalcyonEcho" target="_blank">
+                <img src="https://avatars.githubusercontent.com/u/71548769?v=4" alt="My GitHub">
+            </a>
+        </div>
     </div>
-    <div class="links">
-        <a href="../index.html" class="btn">Whoami</a>
-        <a href="../projects.html" class="btn">Projects</a>
-        <a href="../blogs.html" class="btn">Blogs</a>
-    </div>
-    <div class="pfp">
-        <a href="https://github.com/HalcyonEcho" target="_blank">
-            <img src="https://avatars.githubusercontent.com/u/71548769?v=4" alt="My GitHub">
-        </a>
-    </div>
-</div>
 
-<!-- HERO -->
-<section class="hero">
-    <div class="aero">
-        <h1>Github Pages</h1>
-        <p>This Article would pretty be a infodump of the inspirations and what I've done for this site.</p>
-    </div>
-</section>
+    <!-- HERO -->
+    <section class="hero">
+        <div class="aero">
+            <h1>Lorem Ipsum</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </div>
+    </section>
 
-<!-- PROJECT DOCUMENTATION -->
-<section class="doc-section">
-    <h2>Description</h2>
-    <p>This project is a small website hosted on Github Pages. It uses multiple aesthetics for different "Tabs". Its pretty much a place for me to document and detail any significant projects or info.</p>
-</section>
+    <!-- LOREM ARTICLE -->
+    <section class="live-projects section">
+        <div class="aero">
+            <h2>Lorem Ipsum Odyssey</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin viverra tempor rhoncus. Aenean fermentum diam justo, quis dictum felis tincidunt et. Cras at consectetur odio. Curabitur euismod ullamcorper augue, sed ultricies augue interdum eget. Fusce quis arcu ornare, condimentum risus ut, vulputate justo. Integer pellentesque mauris non justo malesuada ornare. Nulla ullamcorper orci ac lacinia hendrerit. Aenean aliquet risus purus, eget tincidunt eros lobortis nec. Quisque id justo ac lectus vestibulum gravida. Pellentesque consequat vulputate facilisis. Ut vitae fringilla metus, auctor aliquam mauris. Donec nec lectus in ligula hendrerit pulvinar. Duis nec tristique erat. Vivamus vitae commodo lectus. Phasellus bibendum sapien tellus, nec elementum neque varius a.</p>
 
-<section class="doc-section">
-    <h2>Chapters</h2>
-    <ul>
-        <li>"Home" or Index.html</li>
-        <li>The Projects Page</li>
-        <li>The Blogs Page</li>
-        <li>Final Note(s)</li>
-    </ul>
-</section>
+            <p>Praesent elementum, massa et pharetra porta, est urna molestie erat, sed consequat tortor tortor sed risus. Phasellus lacinia bibendum sem ut tempor. Pellentesque tempus aliquam posuere. Phasellus non magna finibus ante aliquet tempus ut et massa. Fusce diam velit, ultricies sit amet condimentum non, volutpat quis purus. Curabitur laoreet, lacus non congue tempor, nisi enim pulvinar risus, vel vestibulum nibh mauris eget risus. Quisque et placerat odio. Suspendisse interdum purus at arcu bibendum dictum. Integer tincidunt hendrerit urna, ut scelerisque neque laoreet vel. Cras at velit semper, efficitur est vitae, rhoncus dolor. Ut ligula enim, lacinia nec sapien id, dictum consectetur orci.</p>
 
-<section class="doc-section">
-    <h2>Index.html</h2>
-    <img src="../resources/photos/Index.png" alt="Homepage" class="doc-screenshot">
-    <p>Run the script with a message argument to get the hash:</p>
-   
-</section>
+            <p>Duis condimentum hendrerit risus ac tempor. Donec at imperdiet elit. Nullam a purus nulla. Nam felis diam, aliquet ac lorem eu, maximus imperdiet enim. Quisque pretium sed magna at dictum. Quisque elementum scelerisque velit. Praesent ac interdum nibh. In vel sollicitudin dolor. Aenean feugiat lobortis posuere. Nam fringilla vulputate velit, eu auctor eros tempus eu. Donec ornare luctus arcu pretium aliquet. Sed est tellus, gravida id tincidunt a, viverra sed nibh. Maecenas lobortis sed diam in semper. Nulla ornare risus sit amet sodales eleifend. Ut faucibus tellus massa, at imperdiet libero elementum ut.</p>
 
+            <p>Cras quis dignissim eros, ac eleifend mi. Cras viverra posuere dui vitae pellentesque. Pellentesque massa sem, varius euismod mattis sed, commodo fringilla enim. Suspendisse potenti. Donec aliquam ultrices interdum. Proin sit amet augue dolor. Donec eget dolor vitae dolor faucibus ultrices. Pellentesque turpis orci, consectetur quis vestibulum vel, imperdiet eu urna. Pellentesque fermentum est diam, nec maximus arcu pulvinar sed. Ut justo massa, fringilla a varius id, dapibus vitae nibh. Phasellus mollis, ligula eu commodo mattis, dolor erat imperdiet enim, eget iaculis mi ante eu felis. Suspendisse potenti.</p>
 
+            <p>Vivamus aliquet urna a elementum maximus. Morbi quis suscipit enim, porta commodo lacus. Suspendisse gravida neque eros, nec pretium massa cursus id. Curabitur quis purus ac elit egestas luctus. Nullam sollicitudin, odio in tincidunt vestibulum, lacus ante commodo lectus, eget aliquet erat massa quis urna. Nulla facilisi. Fusce ac orci rutrum, eleifend ante vitae, scelerisque nisl. Sed tincidunt mauris id tortor vehicula, quis vestibulum sem egestas. Nulla id tempus velit. Pellentesque eu orci vel dui tincidunt efficitur.</p>
+        </div>
+    </section>
 
-
-<!-- FOOTER -->
-<footer>
-    Last Updated: early 2026 &nbsp;|&nbsp; Made with ☕️ by HalcyonEcho
-</footer>
-
+    <!-- FOOTER -->
+    <footer>
+        Last Updated: early 2026 &nbsp;|&nbsp; Made with ☕️ by HalcyonEcho
+    </footer>
 </div>
 </body>
 </html>
