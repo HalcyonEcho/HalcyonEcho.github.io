@@ -11,7 +11,6 @@ The site includes a sleek **cyber bootup animation** before launching into the m
 
 ### Features
 
-- **Bootup Screen:** Futuristic "LOADING" animation built with CSS3 keyframes and Orbitron font.
 - **Dynamic Blog and Projects Fetcher:** Automatically pulls posts from the `/blogs` or `/projects`  directory through GitHub’s content API.
 - **Cursor Customization:** A custom pointer adds personality to each interaction.
 - **Responsive Layout:** Designed for readability across desktop and mobile devices.
@@ -22,6 +21,7 @@ The site includes a sleek **cyber bootup animation** before launching into the m
 - **CSS3 / Keyframes** for visuals and animations  
 - **JavaScript** for GitHub API integration  
 - **GitHub Pages** for simple deployment and hosting  
+- **NameCheap** for domain
 
 ---
 
@@ -29,6 +29,7 @@ The site includes a sleek **cyber bootup animation** before launching into the m
 **Legend:**  
 ✅ = Done | 🛠️ = In Progress | ⬜ = Not Started
 
+[✅] Custom Domain
 [✅] Add Blogs and Projects 
 [✅] Add Bootup for WHOAMI
 [⬜] Add Bootup for Blogs
