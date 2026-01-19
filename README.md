@@ -1,4 +1,4 @@
-# HalcyonEcho's Corner of the Web 
+# Milen.Space
 
 A personal website built and maintained by **Me**, showcasing projects, thoughts, and experiments.  
 The site includes a sleek **cyber bootup animation** before launching into the main content — a **blog‑style** layout that automatically lists and links to markdown or HTML posts pulled directly from this GitHub repository.
@@ -7,7 +7,7 @@ The site includes a sleek **cyber bootup animation** before launching into the m
 
 ## About the Website
 
-**HalcyonEcho’s Corner of the Web** serves as a creative hub that combines design aesthetics with technical functionality.
+**Milen.Space** serves as a creative output for me that combines design aesthetics with technical functionality.
 
 ### Features
 
