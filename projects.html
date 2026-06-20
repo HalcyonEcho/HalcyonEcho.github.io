@@ -348,22 +348,13 @@
 
         .topbar .title h3 {
             margin: 0;
-            font-size: 1rem;
+            font-size: 2rem;
             font-weight: 500;
             white-space: nowrap;
-            background: linear-gradient(180deg, rgba(255,255,255,0.75), rgba(255,255,255,0.45));
-            padding: 6px 14px;
-            border-radius: 8px;
-            backdrop-filter: blur(14px);
-            border: 1px solid rgba(255,255,255,0.8);
-            box-shadow: inset 0 1px 0 rgba(255,255,255,0.9), 0 2px 8px rgba(0,0,0,0.12);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            color: var(--text-main);
         }
 
-        .topbar .title h3:hover {
-            transform: translateY(-2px);
-            box-shadow: inset 0 1px 0 rgba(255,255,255,0.95), 0 4px 12px rgba(0,0,0,0.16);
-        }
+
 
         .topbar .links {
             display: flex;
@@ -458,7 +449,7 @@
         /* FADE IN FOR MAIN PAGE */
         #page-wrapper.fade-in {
             opacity: 0;
-            transition: opacity 0.8s ease-in-out;
+            transition: opacity 0.3s ease-in-out;
         }
         #page-wrapper.fade-in.active {
             opacity: 1;
@@ -528,6 +519,12 @@
                 padding: 20px 10px;
             }
         }
+
+
+    @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
     </style>
 </head>
 <body>
@@ -545,11 +542,11 @@
                     <div class="logo-glass">
                         <div class="reflection"></div>
                         <div class="logo-shine"></div>
-                        <div class="logo-text">P</div>
+                        <div class="logo-text">>~<</div>
                     </div>
                 </div>
-                <div class="system-name">PROJECTS</div>
-                <div class="loading-text">Starting up...</div>
+                <div class="system-name">milen.space</div>
+                <div class="loading-text">Booting...</div>
                 <div class="progress-container">
                     <div class="progress-bar"></div>
                 </div>
@@ -562,7 +559,7 @@
         <!-- TOP NAV -->
         <div class="topbar">
             <div class="title">
-                <h3>💾 milen.space 💾</h3>
+                <h3>milen.space</h3>
             </div>
             <div class="links">
                 <a href="index.html" class="btn">Whoami</a>
@@ -575,12 +572,25 @@
                 </a>
             </div>
         </div>
+        
 
+    <section class="section" style="padding-top: 40px; padding-bottom: 20px;">
+    <div style="display: flex; justify-content: center;">
+        <div class="aero" style="width: 220px; height: 220px; border-radius: 50%; display: flex; align-items: center; justify-content: center; animation: spin 6s linear infinite;">
+            <div style="font-size: 80px; font-weight: bold; color: var(--link-blue); font-family: monospace;">
+                >~<
+            </div>
+        </div>
+    </div>
+    </section>
+
+
+        
         <!-- LIVE PROJECTS -->
         <section class="section live-projects">
             <div class="aero">
-                <h2>🛠️ Live Projects 🛠️</h2>
-                <p>These are pulled straight from the repo.</p>
+                <h2>Projects</h2>
+                <p>List of Current and up and coming projects</p>
                 <ul id="projects-list" class="projects-grid"></ul>
                 <script>
                     (async () => {
@@ -624,7 +634,7 @@
                 document.getElementById('boot-phase').style.display = 'none';
                 document.getElementById('page-wrapper').style.opacity = '1';
             }, 300);
-        }, 1500);
+        }, 500);
 
         // Particles for bootup
         const particlesContainer = document.getElementById('particles');
