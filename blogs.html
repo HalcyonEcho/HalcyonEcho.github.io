@@ -244,6 +244,7 @@ nav a:hover {
     height: 70px;
     border-radius: 5px;
     border: 2px solid #444;
+    object-fit: cover; /* Added to keep rectangular images formatted perfectly square */
 }
 
 /* Post content */
@@ -309,13 +310,13 @@ footer {
 </nav>
 
 <ul class="blog-list" id="blogs-list">
-  <!-- JS will populate blog posts here -->
-</ul>
+  </ul>
 
 <footer>2026 HalcyonEcho. Made with 📀.</footer>
 
 <script>
 // Bootup sequence
+
 const messages = [
     'INITIALIZING KERNEL...',
     'LOADING DEVICE DRIVERS...',
@@ -414,7 +415,7 @@ function displayMessage() {
 
 displayMessage();
 
-// Load blogs
+// Load blogs with full deep-scanning attributes
 (async () => {
   try {
     const response = await fetch('https://api.github.com/repos/HalcyonEcho/HalcyonEcho.github.io/contents/blogs');
@@ -423,19 +424,53 @@ displayMessage();
     list.innerHTML = '';
 
     const baseURL = 'https://halcyonecho.github.io/blogs/';
+    const defaultAvatar = 'https://avatars.githubusercontent.com/u/71548769?v=4';
+    const parser = new DOMParser();
 
-    for (let file of data) {
-      if (file.type !== 'file') continue;
+    const files = data.filter(file => file.type === 'file');
+
+    for (let file of files) {
+      let blogMetaText = 'Blog Post';
+      let firstImageSrc = defaultAvatar;
+      const fileURL = baseURL + encodeURIComponent(file.name);
+
+      if (file.name.endsWith('.html')) {
+        try {
+          // Fetch the page markup raw text values
+          const fileContentRes = await fetch(file.download_url);
+          const htmlText = await fileContentRes.text();
+          
+          // Parse page markup to discover meta values or inner assets
+          const doc = parser.parseFromString(htmlText, 'text/html');
+
+          // 1. Scrape blog-meta content
+          const metaElement = doc.querySelector('.blog-meta');
+          if (metaElement && metaElement.textContent.trim()) {
+            blogMetaText = metaElement.textContent.trim();
+          }
+
+          // 2. Scrape the first image asset, factoring in /resources/ paths
+          const imgElement = doc.querySelector('.blog-content img');
+          if (imgElement && imgElement.getAttribute('src')) {
+            const rawSrc = imgElement.getAttribute('src');
+            
+            // Resolves paths like "../resources/subfolder/pic.jpg" completely against the base layout route
+            firstImageSrc = new URL(rawSrc, baseURL).href;
+          }
+        } catch (fileErr) {
+          console.warn(`Could not parse inner layout descriptors for ${file.name}:`, fileErr);
+        }
+      }
 
       const li = document.createElement('li');
       li.innerHTML = `
         <div class="avatar">
-          <img src="https://avatars.githubusercontent.com/u/71548769?v=4" alt="Image">
+          <img src="${firstImageSrc}" alt="Blog Image">
         </div>
         <div class="post-content">
-          <div class="post-meta">Blog Post</div>
+          <div class="post-meta">${blogMetaText}</div>
           <h2>
-            <a href="${baseURL + encodeURIComponent(file.name)}" target="_blank">
+            <a href="${fileURL}" target="_blank">
               ${file.name.replace(/\.md|\.html/,'')}
             </a>
           </h2>
@@ -445,9 +480,9 @@ displayMessage();
       list.appendChild(li);
     }
   } catch(e) {
-    console.error('Failed to load blogs:', e);
+    console.error('Failed to load blogs entirely:', e);
     const list = document.getElementById('blogs-list');
-    list.innerHTML = `<li style="color:red;">Failed to load blogs.</li>`;
+    list.innerHTML = `<li style="color:red;">Failed to load system blogs cache array.</li>`;
   }
 })();
 </script>
