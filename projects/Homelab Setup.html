@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Projects!</title>
+<title>Homelab</title>
 <style>
 
 /* cursor */
@@ -44,11 +44,13 @@ body {
   color: var(--text-main);
   background: linear-gradient(
     120deg,
-    #88f1ff,
-    #9eccf3,
-    #a8bee6,
-    #c9ffcd,
-    #ffffa9
+#ff7722,
+#00ddd0,
+#0099ff,
+#6655ff,
+#7744dd,
+#44cc33,
+#ffdd22
   );
   background-size: 400% 400%;
   animation: skySwirl 30s ease-in-out infinite;
@@ -66,7 +68,7 @@ body::before {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  background: radial-gradient(circle at top center, rgba(255,255,255,0.45), transparent 65%);
+  background: radial-gradient(circle at top center, rgba(255,255,255,0.45), transparent 85%);
 }
 
 /* AERO PANEL */
@@ -176,7 +178,7 @@ a:hover { text-decoration:underline; }
 
 .btn:hover, button:hover { background: linear-gradient(180deg,#ffffff,#b6dcff); }
 
-.section { max-width:1000px; margin:70px auto; padding:40px; }
+.section { max-width: 92vw; width: 100%; margin:40px auto; padding:20px; }
 
 .hero { padding-top:120px; display:flex; justify-content:center; text-align:center; position:relative; }
 .hero h1 { font-size:2rem; font-weight:600; line-height:1.2; margin:0 0 16px; color: var(--text-main); }
@@ -184,14 +186,97 @@ a:hover { text-decoration:underline; }
 .hero .aero:hover { transform:translateY(-4px); box-shadow: inset 0 1px 0 rgba(255,255,255,0.95), 0 18px 48px rgba(0,0,0,0.18); }
 
 .live-projects { margin-top:10px; margin-bottom:60px; }
-.live-projects .aero { padding:40px 36px; border-radius:16px; background:linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.55)); backdrop-filter: blur(20px); border:1px solid rgba(255,255,255,0.8); box-shadow: inset 0 1px 0 rgba(255,255,255,0.9), 0 12px 36px rgba(0,0,0,0.14); text-align:center; max-width:1000px; margin:0 auto; }
-.live-projects h2 { font-size:2rem; font-weight:600; margin:0 0 16px; line-height:1.2; color: var(--text-main); text-shadow:0 1px 2px rgba(255,255,255,0.6); }
-.live-projects p { margin:0 0 32px; font-size:1.05rem; line-height:1.6; opacity:0.8; }
+.live-projects .aero { padding:40px 36px; border-radius:16px; background:linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.55)); backdrop-filter: blur(20px); border:1px solid rgba(255,255,255,0.8); box-shadow: inset 0 1px 0 rgba(255,255,255,0.9), 0 12px 36px rgba(0,0,0,0.14); text-align:center; margin:0 auto; width: 100%; }
+.live-projects h2 { font-size:2.2rem; font-weight:600; margin:0 0 16px; line-height:1.2; color: var(--text-main); text-shadow:0 1px 2px rgba(255,255,255,0.6); }
+.live-projects p { margin:0 0 32px; font-size:1.1rem; line-height:1.6; opacity:0.8; }
 
-.projects-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap:24px; padding:0; list-style:none; }
-.projects-grid li { background: linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.55)); backdrop-filter: blur(18px); border-radius:12px; border:1px solid rgba(255,255,255,0.8); box-shadow: inset 0 1px 0 rgba(255,255,255,0.9), 0 8px 28px rgba(0,0,0,0.12); padding:20px; transition: transform 0.25s ease, box-shadow 0.25s ease; }
-.projects-grid li:hover { transform:translateY(-4px); box-shadow: inset 0 1px 0 rgba(255,255,255,0.95), 0 12px 36px rgba(0,0,0,0.18); }
+.diagram-scroll-container {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  margin-top: 20px;
+  padding-bottom: 10px;
+}
 
+#diagram {
+  width: 100%;
+  min-width: 950px;
+  height: auto;
+  display: block;
+  margin: 0 auto; 
+}
+
+.device-box {
+  cursor: pointer;
+}
+
+.device-box rect {
+  transition: filter 0.25s ease, fill 0.25s ease, stroke-width 0.25s ease;
+}
+
+.device-box:hover rect {
+  fill: rgba(255, 255, 255, 0.95) !important;
+  stroke: #0099ff !important;
+  stroke-width: 3px !important;
+  filter: drop-shadow(0 0 12px rgba(0, 153, 255, 0.6));
+}
+
+.device-box:hover text {
+  fill: #0066cc !important;
+}
+
+#detail-panel {
+  position: fixed;
+  background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,255,255,0.85));
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.8);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+  min-width: 300px;
+  max-width: 380px;
+  z-index: 100;
+  display: none;
+  pointer-events: all;
+}
+
+#detail-panel.active {
+  display: block;
+}
+
+#detail-panel h3 {
+  margin: 0 0 8px 0;
+  color: #1b5fa7;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+#detail-panel p {
+  margin: 6px 0;
+  font-size: 14px;
+  color: #555;
+  line-height: 1.5;
+}
+
+#detail-panel .spec {
+  font-size: 12px;
+  color: #888;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(0,0,0,0.1);
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #1b5fa7;
+}
 
 footer {
   margin-top: auto; 
@@ -206,7 +291,7 @@ footer {
   box-shadow: 0 -6px 18px rgba(0,0,0,0.16), inset 0 1px 0 rgba(255,255,255,0.8);
 }
 
-/* ===== MOBILE BREAKPOINT FIXED ===== */
+/* ===== MOBILE BREAKPOINT ===== */
 @media (max-width: 980px) {
   .topbar {
     position: relative;       
@@ -227,18 +312,20 @@ footer {
     white-space: normal;      
     text-align: center;
     padding: 8px 16px;
-    font-size: 1.3rem; /* Fixed extreme sizing */
+    font-size: 1.3rem;
   }
 
   .topbar .links {
     justify-content: center;   
     flex-wrap: wrap;           
     gap: 10px;                 
-    font-size: 1rem; /* Fixed extreme sizing */
+    font-size: 1rem;
   }
 
   .topbar > .pfp {
-    display: none;
+    display: block;
+    position: static;
+    margin-top: 10px;
   }
 
   .hero {
@@ -246,19 +333,19 @@ footer {
   }
 
   .hero h1 {
-    font-size: 1.8rem; /* Fixed extreme sizing */
+    font-size: 1.8rem;
   }
 
   .hero p {
-    font-size: 1rem; /* Fixed extreme sizing */
+    font-size: 1rem;
   }
 
   .section.live-projects h2 {
-    font-size: 1.8rem; /* Fixed extreme sizing */
+    font-size: 1.8rem;
   }
 
   .section.live-projects p {
-    font-size: 1rem; /* Fixed extreme sizing */
+    font-size: 1rem;
   }
 
   .section.live-projects .aero {
@@ -267,8 +354,13 @@ footer {
   }
 
   footer {
-    font-size: 0.8rem; /* Fixed extreme sizing */
+    font-size: 0.8rem;
     padding: 20px 10px;     
+  }
+
+  #detail-panel {
+    min-width: 280px;
+    max-width: 90vw;
   }
 }
 
@@ -295,82 +387,229 @@ footer {
 
     <section class="live-projects section">
         <div class="aero">
-            <h2>milen.space</h2>
-            <p>A checklist progress of this website's development</p>
+            <h2>Homelab Setup</h2>
+            <p>This page is an overview of my homelab setup.</p>
             
-            <div class="todo-container" style="max-width: 500px; margin: 20px auto; text-align: left;">
-                
-                <h3 style="margin-top: 24px; margin-bottom: 12px; font-size: 1.3rem; border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom: 4px;">Whoami Page</h3>
-                
-                <div class="todo-item done" style="margin-bottom: 12px; display: flex; align-items: center; opacity: 0.6;">
-                    <input type="checkbox" id="index-task1" checked style="margin-right: 10px; transform: scale(1.2);">
-                    <label for="index-task1" style="font-size: 1.1rem; text-decoration: line-through;">Created 80's style homepage</label>
-                </div>
-
-                <div class="todo-item done" style="margin-bottom: 12px; display: flex; align-items: center; opacity: 0.6;">
-                    <input type="checkbox" id="index-task2" checked style="margin-right: 10px; transform: scale(1.2);">
-                    <label for="index-task2" style="font-size: 1.1rem; text-decoration: line-through;">Updated with new Job title and hobbies</label>
-                </div>
-
-                <div class="todo-item done" style="margin-bottom: 12px; display: flex; align-items: center; opacity: 0.6;">
-                    <input type="checkbox" id="index-task2" checked style="margin-right: 10px; transform: scale(1.2);">
-                    <label for="index-task2" style="font-size: 1.1rem; text-decoration: line-through;">Clean up Whoami for better mobile optimisation</label>
-                </div>
-
-
-
-
-                <h3 style="margin-top: 32px; margin-bottom: 12px; font-size: 1.3rem; border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom: 4px;">Projects Page</h3>
-                
-                <div class="todo-item done" style="margin-bottom: 12px; display: flex; align-items: center; opacity: 0.6;">
-                    <input type="checkbox" id="proj-task1" checked style="margin-right: 10px; transform: scale(1.2);">
-                    <label for="proj-task1" style="font-size: 1.1rem; text-decoration: line-through;">Create Aero-themed project cards grid</label>
-                </div>
-
-                <div class="todo-item done" style="margin-bottom: 12px; display: flex; align-items: center; opacity: 0.6;">
-                    <input type="checkbox" id="proj-task1" checked style="margin-right: 10px; transform: scale(1.2);">
-                    <label for="proj-task1" style="font-size: 1.1rem; text-decoration: line-through;">Created milen.space to do list.</label>
-                </div>
-
-                <div class="todo-item" style="margin-bottom: 12px; display: flex; align-items: center;">
-                    <input type="checkbox" id="blog-task2" style="margin-right: 10px; transform: scale(1.2);">
-                    <label for="blog-task2" style="font-size: 1.1rem;">Write up homelab setup</label>
-                </div>
-
-                <div class="todo-item" style="margin-bottom: 12px; display: flex; align-items: center;">
-                    <input type="checkbox" id="blog-task2" style="margin-right: 10px; transform: scale(1.2);">
-                    <label for="blog-task2" style="font-size: 1.1rem;">Replace and publish post on CNC-Machine build.</label>
-                </div>
-
-
-                <h3 style="margin-top: 32px; margin-bottom: 12px; font-size: 1.3rem; border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom: 4px;">Blogs Page</h3>
-                
-                <div class="todo-item done" style="margin-bottom: 12px; display: flex; align-items: center; opacity: 0.6;">
-                    <input type="checkbox" id="blog-task1" checked style="margin-right: 10px; transform: scale(1.2);">
-                    <label for="blog-task1" style="font-size: 1.1rem; text-decoration: line-through;">Set up the 2000's style blog article list styling</label>
-                </div>
-
-                <div class="todo-item" style="margin-bottom: 12px; display: flex; align-items: center;">
-                    <input type="checkbox" id="blog-task2" style="margin-right: 10px; transform: scale(1.2);">
-                    <label for="blog-task2" style="font-size: 1.1rem;">Replace and publish post on keyboard build.</label>
-                </div>
-
-
-                <div class="todo-item" style="margin-bottom: 12px; display: flex; align-items: center;">
-                    <input type="checkbox" id="proj-task2" style="margin-right: 10px; transform: scale(1.2);">
-                    <label for="proj-task2" style="font-size: 1.1rem;">Write up Previous CTFs challenges</label>
-                </div>
-
-                
-
+            <div class="diagram-scroll-container">
+                <svg id="diagram" viewBox="0 0 1100 560" xmlns="http://www.w3.org/2000/svg"></svg>
             </div>
         </div>
     </section>
+
+    <div id="detail-panel">
+        <button class="close-btn" onclick="closePanel()">✕</button>
+        <h3 id="device-name"></h3>
+        <p id="device-desc"></p>
+        <div class="spec" id="device-specs"></div>
+    </div>
 
     <footer>
         Last Updated: June 26 &nbsp;|&nbsp; Made with ☕️ by HalcyonEcho
     </footer>
 </div>
+
+<script>
+// ===== RESTRUCTURED BACKEND ACCORDING TO USER FLOW ARCHITECTURE =====
+const DEVICES = [
+    // Tier 1 - Primary Central Gateway
+    {
+        id: 'router',
+        name: 'Ocean Network',
+        desc: 'Primary meshed network access point across a few physical "Deco" nodes.',
+        specs: 'Gigabit Ethernet backhaul, 1Gbps bandwidth, robust mesh coverage.',
+        x: 425, y: 40, width: 250, height: 100,
+        color: 'rgba(255,255,255,0.85)',
+        tier: 'gateway'
+    },
+    
+    // Tier 2 - Processing Nodes / Drivers
+    {
+        id: 'delamain',
+        name: 'Raspberry Pi (Delamain)',
+        desc: 'Headless ARM computer driving local shared drives and an active linux instance.',
+        specs: 'Raspberry Pi 4B, 8GB RAM, Running Raspberry Pi OS',
+        x: 50, y: 220, width: 260, height: 110,
+        color: 'rgba(147,224,255,0.45)',
+        tier: 'compute'
+    },
+    {
+        id: 'cctv',
+        name: 'MacBook Pro (2015)',
+        desc: 'Dedicated system deployment architecture managing security feeds.',
+        specs: 'Linux Mint, Running AgentDVR, persistent terabyte file attachment system.',
+        x: 420, y: 220, width: 260, height: 110,
+        color: 'rgba(147,224,255,0.45)',
+        tier: 'compute'
+    },
+    {
+        id: 'desktop',
+        name: 'Windows Desktop',
+        desc: 'Main engineering desktop unit with Windows 11 Enterprise IOT running USB-CNC drivers.',
+        specs: 'Windows 11 IOT Environment OS running Mach3 core drivers.',
+        x: 790, y: 220, width: 260, height: 110,
+        color: 'rgba(147,224,255,0.45)',
+        tier: 'compute'
+    },
+    
+    // Tier 3 - Subsystem Services and Infrastructure Endpoints
+    {
+        id: 'nas',
+        name: 'WD SN770 (OceanNAS)',
+        desc: 'High-speed backend matrix network array via fast USB 3 interface.',
+        specs: 'Active Samba protocol directories, 1TB storage capacity, USB 3.0 connectivity.',
+        x: 50, y: 410, width: 260, height: 100,
+        color: 'rgba(255,255,255,0.85)',
+        tier: 'endpoint'
+    },
+    {
+        id: 'storage',
+        name: 'Large HDD Storage',
+        desc: 'High volume capacity arrays for surveillance logging targets.',
+        specs: '3TB Purple WD HDD, USB 3.0 connectivity, optimized for 24/7 video recording workloads.',
+        x: 360, y: 410, width: 170, height: 100,
+        color: 'rgba(255,255,255,0.85)',
+        tier: 'endpoint'
+    },
+    {
+        id: 'cameras',
+        name: 'CCTV Cameras',
+        desc: 'Distributed video capture arrays monitoring perimeter metrics.',
+        specs: 'Uninterrupted structural media stream recording pipelines through AgentDVR.',
+        x: 560, y: 410, width: 170, height: 100,
+        color: 'rgba(255,255,255,0.85)',
+        tier: 'endpoint'
+    },
+    {
+        id: 'cnc',
+        name: '3-Axis CNC Machine',
+        desc: 'Fabrication framework controlled dynamically over processing protocols.',
+        specs: 'Precision CNC hardware running via CNC USB platform profiles.',
+        x: 790, y: 410, width: 260, height: 100,
+        color: 'rgba(255,255,255,0.85)',
+        tier: 'endpoint'
+    }
+];
+
+const CONNECTIONS = [
+    { from: 'router', to: 'delamain' },
+    { from: 'router', to: 'cctv' },
+    { from: 'router', to: 'desktop' },
+    { from: 'delamain', to: 'nas' },
+    { from: 'cctv', to: 'storage' },
+    { from: 'cctv', to: 'cameras' },
+    { from: 'desktop', to: 'cnc' }
+];
+
+// ===== AUTOMATED DRAW & RENDER MATRIX =====
+
+const diagram = document.getElementById('diagram');
+const panel = document.getElementById('detail-panel');
+const nameEl = document.getElementById('device-name');
+const descEl = document.getElementById('device-desc');
+const specsEl = document.getElementById('device-specs');
+
+function getDeviceCenter(deviceId) {
+    const device = DEVICES.find(d => d.id === deviceId);
+    if (!device) return null;
+    return {
+        x: device.x + device.width / 2,
+        y: device.y + device.height / 2
+    };
+}
+
+function drawConnections() {
+    CONNECTIONS.forEach(conn => {
+        const from = getDeviceCenter(conn.from);
+        const to = getDeviceCenter(conn.to);
+        
+        if (!from || !to) return;
+        
+        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        line.setAttribute('x1', from.x);
+        line.setAttribute('y1', from.y);
+        line.setAttribute('x2', to.x);
+        line.setAttribute('y2', to.y);
+        line.setAttribute('stroke', '#1b5fa7');
+        line.setAttribute('stroke-width', '2.5');
+        line.setAttribute('stroke-dasharray', '6,4');
+        line.setAttribute('opacity', '0.65');
+        
+        diagram.appendChild(line);
+    });
+}
+
+function drawDevices() {
+    DEVICES.forEach(device => {
+        const group = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+        group.setAttribute('class', 'device-box');
+        group.setAttribute('data-device', device.id);
+        
+        const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        rect.setAttribute('x', device.x);
+        rect.setAttribute('y', device.y);
+        rect.setAttribute('width', device.width);
+        rect.setAttribute('height', device.height);
+        rect.setAttribute('rx', '10');
+        rect.setAttribute('fill', device.color);
+        rect.setAttribute('stroke', '#1b5fa7');
+        rect.setAttribute('stroke-width', '1.5');
+        
+        const textY = device.y + (device.height / 2) + 5;
+        const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        text.setAttribute('x', device.x + device.width / 2);
+        text.setAttribute('y', textY);
+        text.setAttribute('text-anchor', 'middle');
+        text.setAttribute('font-weight', '600');
+        text.setAttribute('font-size', '14');
+        text.setAttribute('fill', '#1b2a33');
+        text.style.transition = "fill 0.25s ease";
+        text.textContent = device.name;
+        
+        group.appendChild(rect);
+        group.appendChild(text);
+        
+        group.addEventListener('click', (e) => {
+            showPanel(device, e);
+        });
+        
+        diagram.appendChild(group);
+    });
+}
+
+function showPanel(device, event) {
+    nameEl.textContent = device.name;
+    descEl.textContent = device.desc;
+    specsEl.textContent = device.specs;
+    
+    const rect = event.currentTarget.getBoundingClientRect();
+    
+    if (window.innerWidth <= 980) {
+        panel.style.left = '50%';
+        panel.style.top = '50%';
+        panel.style.transform = 'translate(-50%, -50%)';
+    } else {
+        panel.style.left = (rect.right + 20) + 'px';
+        panel.style.top = (rect.top - 60) + 'px';
+        panel.style.transform = 'none';
+    }
+    
+    panel.classList.add('active');
+}
+
+function closePanel() {
+    panel.classList.remove('active');
+}
+
+document.addEventListener('click', (e) => {
+    if (!e.target.closest('.device-box') && !e.target.closest('#detail-panel')) {
+        closePanel();
+    }
+});
+
+// Initialize Setup Matrix
+drawConnections();
+drawDevices();
+</script>
 
 </body>
 </html>
