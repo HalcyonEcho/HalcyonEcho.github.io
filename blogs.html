@@ -292,7 +292,7 @@ footer {
 
 <div class="bootup-overlay" id="bootup">
     <div class="static"></div>
-    <div class="glitch">BLOGS v1.993</div>
+    <div class="glitch">BLOGS v2.005</div>
     <div id="boot-messages"></div>
     <div class="progress-bar">
         <div class="progress-fill" id="progress"></div>
@@ -322,6 +322,11 @@ const messages = [
     'MOUNTING FILE SYSTEMS...',
     '> /dev/sda1 MOUNTED',
     '> /dev/sda2 MOUNTED',
+    '> /dev/nvme0n1p1 MOUNTED',
+    'CHECKING FILE SYSTEM INTEGRITY...',
+    'SCANNING /dev/sda1..........................OK',
+    'SCANNING /dev/sda2..........................OK',
+    'SCANNING /dev/nvme0n1p1......................OK',
     'CHECKING SYSTEM INTEGRITY...',
     'WARNING: 3 SECTORS CORRUPTED',
     'ATTEMPTING REPAIR...',
@@ -329,19 +334,49 @@ const messages = [
     'LOADING GRUNGE.SYS...',
     'LOADING DISTORTION.DLL...',
     'LOADING FEEDBACK.DRV...',
+    'LOADING REVERB.DLL...',
     'INITIALIZING AUDIO SUBSYSTEM...',
     'REVERB MODULE LOADED',
+    'SPATIAL AUDIO ENABLED',
+    'LOUDNESS EQUALIZATION...OK',
     'ALLOCATING MEMORY BANKS...',
     '> 640K BASE MEMORY',
     '> 15360K EXTENDED',
+    '> 32768K HIGH MEMORY AREA',
     'SCANNING FOR PERIPHERALS...',
     'KEYBOARD................OK',
     'DISPLAY.................OK',
+    'MOUSE....................OK',
+    'HEADPHONES...............OK',
+    'SCANNER..................READY',
     'STARTING NETWORK STACK...',
     'TCP/IP LOADED',
     'ETHERNET DETECTED',
+    'WLAN0 INTERFACE UP',
+    'DHCP REQUEST SENT',
+    '> IP ADDRESS ASSIGNED: 192.168.1.42',
+    '> GATEWAY: 192.168.1.1',
+    '> DNS: 8.8.8.8',
     'CALIBRATING RTC...',
     'SYSTEM TIME SET',
+    'QUERYING NTP SERVER...',
+    'TIME SYNCHRONIZED',
+    'LOADING SECURITY SUBSYSTEM...',
+    'FIREWALL INITIALIZED',
+    'INTRUSION DETECTION ARMED',
+    'LOADING USER PROFILES...',
+    'PROFILE: HALCYONECHO LOADED',
+    'HOME DIRECTORY MOUNTED',
+    'CHECKING STARTUP SCRIPTS...',
+    '> RUNNING: init_raspi.sh',
+    '> RUNNING: backup.sh',
+    '> RUNNING: monitor_temps.sh',
+    'INITIALIZING SERVICES...',
+    'SSH DAEMON STARTED',
+    'WEB SERVER STARTED',
+    'DATABASE SERVICE STARTED',
+    'VNC SERVER STARTED',
+    'SYSTEM READY FOR LOGIN',
     'BOOT SEQUENCE COMPLETE'
 ];
 
