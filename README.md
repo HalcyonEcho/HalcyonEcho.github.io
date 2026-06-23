@@ -25,17 +25,3 @@ The site includes a sleek **cyber bootup animation** before launching into the m
 
 ---
 
-## TODO List
-**Legend:**  
-✅ = Done | 🛠️ = In Progress | ⬜ = Not Started
-
-[✅] Custom Domain
-[✅] Add Blogs and Projects 
-[✅] Add Bootup for WHOAMI
-[⬜] Add Bootup for Blogs
-[🛠️] Add Bootup for Projects
-[⬜] Project: Github Pages
-[⬜] Project: Lego Mouse
-[⬜] Blog: The BullShite™ that is working with a C34G55T Monitor
-[⬜] Blog: Using the Sentio SuperBook with a Mac
-[⬜] and many more!
