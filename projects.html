@@ -432,7 +432,7 @@
 
         footer {
             margin-top: 0;
-            position: absolute; 
+            position: static; 
             bottom: 0;
             width: 100%;
             margin-top: 60px;
@@ -449,7 +449,7 @@
         /* FADE IN FOR MAIN PAGE */
         #page-wrapper.fade-in {
             opacity: 0;
-            transition: opacity 0.3s ease-in-out;
+            transition: opacity 0.5s ease-in-out;
         }
         #page-wrapper.fade-in.active {
             opacity: 1;
@@ -471,7 +471,7 @@
                 top: auto;
             }
             .topbar .title h3 {
-                font-size: 1.2rem;
+                font-size: 2rem;
                 white-space: normal;
                 text-align: center;
                 padding: 8px 16px;
@@ -482,7 +482,9 @@
                 gap: 10px;
             }
             .topbar > .pfp {
-                display: none;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 10px;
             }
             .section.live-projects h2 {
                 font-size: 1.8rem;
