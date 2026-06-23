@@ -86,7 +86,18 @@ animation: dots 1.5s steps(4, end) infinite;
     0%   { background-size: 50px 50px; opacity: 1; }
     100% { background-size: 10px 10px; opacity: 0; }
   }
+
+
+    .socials {
+    gap: 12px;
+  }
+  
+  .socials a img {
+    width: 80px;
+    height: 28px;
+  }
 }
+
 @media (max-width: 480px) {
   .grid-startup {
     background-size: 40px 40px;
@@ -98,6 +109,16 @@ animation: dots 1.5s steps(4, end) infinite;
   @keyframes zoom {
     0%   { background-size: 40px 40px; opacity: 1; }
     100% { background-size: 8px 8px; opacity: 0; }
+  }
+
+
+    .socials {
+    gap: 8px;
+  }
+  
+  .socials a img {
+    width: 72px;
+    height: 25px;
   }
 }
 
@@ -525,7 +546,7 @@ footer {
 
     <p>The following are ways to reach me:</p>
 
-    <div class="socials" style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; padding: 10px 0;">
+    <div class="socials" style="display: flex; justify-content: center; gap: 15px; flex-wrap: nowrap; padding: 10px 0; width: fit-content; margin: 0 auto;">
       
       <a href="https://github.com/HalcyonEcho" target="_blank" style="background: none; border: none; box-shadow: none; padding: 0;">
         <img src="whoami/Github.png" alt="GitHub" style="width: 88px; height: 31px; image-rendering: pixelated; display: block;">
