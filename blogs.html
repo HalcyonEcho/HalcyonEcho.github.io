@@ -237,14 +237,15 @@ nav a:hover {
 .blog-list .avatar {
     flex: 0 0 80px;
     margin-right: 15px;
+    overflow: hidden;
 }
 
 .blog-list .avatar img {
-    width: 70px;
-    height: 70px;
+    width: 80px;
+    height: 80px;
     border-radius: 5px;
     border: 2px solid #444;
-    object-fit: cover; /* Added to keep rectangular images formatted perfectly square */
+    object-fit: cover;
 }
 
 /* Post content */
@@ -310,13 +311,12 @@ footer {
 </nav>
 
 <ul class="blog-list" id="blogs-list">
-  </ul>
+</ul>
 
-<footer>2026 HalcyonEcho. Made with 📀.</footer>
+<footer>2026 HalcyonEcho. NOT made with LaserDisc.</footer>
 
 <script>
 // Bootup sequence
-
 const messages = [
     'INITIALIZING KERNEL...',
     'LOADING DEVICE DRIVERS...',
@@ -402,7 +402,7 @@ function displayMessage() {
         }
         
         currentMessage++;
-        setTimeout(displayMessage, Math.random() * 40 + 20 );
+        setTimeout(displayMessage, Math.random() * 40 + 20);
     } else {
         setTimeout(() => {
             bootupOverlay.classList.add('fade-out');
@@ -415,7 +415,7 @@ function displayMessage() {
 
 displayMessage();
 
-// Load blogs via direct site routing with root-relative path fixing
+// Load blogs with improved extraction
 (async () => {
   try {
     const response = await fetch('https://api.github.com/repos/HalcyonEcho/HalcyonEcho.github.io/contents/blogs');
@@ -423,69 +423,102 @@ displayMessage();
     const list = document.getElementById('blogs-list');
     list.innerHTML = '';
 
-    const baseURL = 'https://halcyonecho.github.io/blogs/';
-    const siteRoot = 'https://halcyonecho.github.io'; // Added to perfectly anchor root-absolute paths like /resources/
+    const siteRoot = 'https://halcyonecho.github.io';
+    const rawGithubURL = 'https://raw.githubusercontent.com/HalcyonEcho/HalcyonEcho.github.io/main/blogs/';
+    const displayURL = 'https://halcyonecho.github.io/blogs/';
     const defaultAvatar = 'https://avatars.githubusercontent.com/u/71548769?v=4';
-    const parser = new DOMParser();
 
     const files = data.filter(file => file.type === 'file' && file.name.endsWith('.html'));
 
     for (let file of files) {
       let blogMetaText = 'Blog Post';
+      let blogTitle = file.name.replace(/\.html$/, '');
       let firstImageSrc = defaultAvatar;
-      const fileURL = baseURL + encodeURIComponent(file.name);
+      const fileURL = displayURL + encodeURIComponent(file.name);
+      const rawFileURL = rawGithubURL + encodeURIComponent(file.name);
 
+      let previewText = 'Click title to read full blog.';
+      
       try {
-        const fileContentRes = await fetch(fileURL);
+        const fileContentRes = await fetch(rawFileURL);
         if (fileContentRes.ok) {
           const htmlText = await fileContentRes.text();
-          const doc = parser.parseFromString(htmlText, 'text/html');
-
-          // 1. Extract the .blog-meta text safely
-          const metaElement = doc.querySelector('.blog-meta');
-          if (metaElement && metaElement.textContent.trim()) {
-            blogMetaText = metaElement.textContent.trim();
+          
+          // Extract blog-meta content using regex
+          const metaMatch = htmlText.match(/<div class="blog-meta"[^>]*>([^<]+)<\/div>/);
+          if (metaMatch && metaMatch[1]) {
+            blogMetaText = metaMatch[1].trim();
           }
 
-          // 2. Extract the img inside .blog-content and handle root-relative math
-          const imgElement = doc.querySelector('.blog-content img');
-          if (imgElement && imgElement.getAttribute('src')) {
-            const rawSrc = imgElement.getAttribute('src');
+          // Extract blog title from h1
+          const titleMatch = htmlText.match(/<h1[^>]*>([^<]+)<\/h1>/);
+          if (titleMatch && titleMatch[1]) {
+            blogTitle = titleMatch[1].trim();
+          }
+
+          // Extract first image from blog-content section
+          let imgMatch = htmlText.match(/<div class="blog-content"[^>]*>[\s\S]*?<img[^>]*src="([^"]+)"/);
+          
+          if (!imgMatch) {
+            imgMatch = htmlText.match(/<img[^>]*src="([^"]+)"/);
+          }
+          
+          if (imgMatch && imgMatch[1]) {
+            const rawSrc = imgMatch[1];
+            console.log(`Extracted image for ${file.name}:`, rawSrc);
             
             if (rawSrc.startsWith('/')) {
-              // If it starts with a slash like "/resources/...", build it straight from the domain root
               firstImageSrc = siteRoot + rawSrc;
+            } else if (rawSrc.startsWith('http')) {
+              firstImageSrc = rawSrc;
             } else {
-              // Otherwise, handle normal relative navigation pathing (like "../" or "images/")
               firstImageSrc = new URL(rawSrc, fileURL).href;
             }
+            console.log(`Resolved to:`, firstImageSrc);
+          } else {
+            console.warn(`No image found in ${file.name}`);
+          }
+
+          // Extract preview text from blog-content (first ~20 words)
+          const contentMatch = htmlText.match(/<div class="blog-content"[^>]*>([\s\S]*?)<\/div>/);
+          if (contentMatch && contentMatch[1]) {
+            // Remove HTML tags and get text
+            let contentText = contentMatch[1]
+              .replace(/<[^>]+>/g, ' ')  // Remove all HTML tags
+              .replace(/\s+/g, ' ')       // Collapse whitespace
+              .trim();
+            
+            // Get first ~20 words
+            const words = contentText.split(/\s+/).slice(0, 20).join(' ');
+            previewText = words.length < contentText.length ? words + '.....' : words;
           }
         }
       } catch (fileErr) {
-        console.warn(`Could not parse elements within ${file.name}:`, fileErr);
+        console.warn(`Could not parse ${file.name}:`, fileErr);
       }
 
+      // Create list item with extracted data
       const li = document.createElement('li');
       li.innerHTML = `
         <div class="avatar">
-          <img src="${firstImageSrc}" alt="Blog Image">
+          <img src="${firstImageSrc}" alt="${blogTitle}" onerror="this.src='https://avatars.githubusercontent.com/u/71548769?v=4'">
         </div>
         <div class="post-content">
           <div class="post-meta">${blogMetaText}</div>
           <h2>
             <a href="${fileURL}" target="_blank">
-              ${file.name.replace(/\.md|\.html/,'')}
+              ${blogTitle}
             </a>
           </h2>
-          <p>Click title to read full blog.</p>
+          <p>${previewText}</p>
         </div>
       `;
       list.appendChild(li);
     }
   } catch(e) {
-    console.error('Failed to clear array pipeline:', e);
+    console.error('Failed to load blogs:', e);
     const list = document.getElementById('blogs-list');
-    list.innerHTML = `<li style="color:red;">Failed to load system blogs cache array.</li>`;
+    list.innerHTML = `<li style="color:#ff6b6b;">Failed to load blog index.</li>`;
   }
 })();
 </script>

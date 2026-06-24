@@ -416,7 +416,7 @@ const DEVICES = [
         id: 'router',
         name: 'Ocean Network',
         desc: 'Primary meshed network access point across a few physical "Deco" nodes.',
-        specs: 'Gigabit Ethernet backhaul, 1Gbps bandwidth, robust mesh coverage.',
+        specs: 'Gigabit Ethernet , 1Gbps bandwidth, robust mesh coverage.',
         x: 425, y: 40, width: 250, height: 100,
         color: 'rgba(255,255,255,0.85)',
         tier: 'gateway'
@@ -425,7 +425,7 @@ const DEVICES = [
     // Tier 2 - Processing Nodes / Drivers
     {
         id: 'delamain',
-        name: 'Raspberry Pi (Delamain)',
+        name: 'Raspberry Pi',
         desc: 'Headless ARM computer driving local shared drives and an active linux instance.',
         specs: 'Raspberry Pi 4B, 8GB RAM, Running Raspberry Pi OS',
         x: 50, y: 220, width: 260, height: 110,
@@ -435,8 +435,8 @@ const DEVICES = [
     {
         id: 'cctv',
         name: 'MacBook Pro (2015)',
-        desc: 'Dedicated system deployment architecture managing security feeds.',
-        specs: 'Linux Mint, Running AgentDVR, persistent terabyte file attachment system.',
+        desc: 'x86 laptop permanently docked for managing security feeds.',
+        specs: 'Linux Mint, Running AgentDVR, persistent multi-terabyte file attachment system.',
         x: 420, y: 220, width: 260, height: 110,
         color: 'rgba(147,224,255,0.45)',
         tier: 'compute'
@@ -445,7 +445,7 @@ const DEVICES = [
         id: 'desktop',
         name: 'Windows Desktop',
         desc: 'Main engineering desktop unit with Windows 11 Enterprise IOT running USB-CNC drivers.',
-        specs: 'Windows 11 IOT Environment OS running Mach3 core drivers.',
+        specs: 'Absolutely ancient i7-4790k, 8GB RAM and (get this) a gt625 GPU and a 512GB SSD.',
         x: 790, y: 220, width: 260, height: 110,
         color: 'rgba(147,224,255,0.45)',
         tier: 'compute'
@@ -454,9 +454,9 @@ const DEVICES = [
     // Tier 3 - Subsystem Services and Infrastructure Endpoints
     {
         id: 'nas',
-        name: 'WD SN770 (OceanNAS)',
+        name: 'OceanNAS',
         desc: 'High-speed backend matrix network array via fast USB 3 interface.',
-        specs: 'Active Samba protocol directories, 1TB storage capacity, USB 3.0 connectivity.',
+        specs: 'Active SambaShare with Password protected directories, 512GB storage capacity, USB 3.0 connectivity.',
         x: 50, y: 410, width: 260, height: 100,
         color: 'rgba(255,255,255,0.85)',
         tier: 'endpoint'
@@ -474,7 +474,7 @@ const DEVICES = [
         id: 'cameras',
         name: 'CCTV Cameras',
         desc: 'Distributed video capture arrays monitoring perimeter metrics.',
-        specs: 'Uninterrupted structural media stream recording pipelines through AgentDVR.',
+        specs: 'DaHua CCTV Cameras, connected via Powered Ethernet Switch to the MacBook Pro for processing.',
         x: 560, y: 410, width: 170, height: 100,
         color: 'rgba(255,255,255,0.85)',
         tier: 'endpoint'
@@ -483,7 +483,7 @@ const DEVICES = [
         id: 'cnc',
         name: '3-Axis CNC Machine',
         desc: 'Fabrication framework controlled dynamically over processing protocols.',
-        specs: 'Precision CNC hardware running via CNC USB platform profiles.',
+        specs: 'I have no clue what the specs are, its some aliexpress special.',
         x: 790, y: 410, width: 260, height: 100,
         color: 'rgba(255,255,255,0.85)',
         tier: 'endpoint'
@@ -581,19 +581,50 @@ function showPanel(device, event) {
     descEl.textContent = device.desc;
     specsEl.textContent = device.specs;
     
+    panel.classList.add('active');
+    
+    // Force reflow to get accurate panel dimensions
+    panel.offsetHeight;
+    
     const rect = event.currentTarget.getBoundingClientRect();
+    const panelWidth = panel.offsetWidth;
+    const panelHeight = panel.offsetHeight;
+    const padding = 20;
     
     if (window.innerWidth <= 980) {
+        // Mobile: center panel
         panel.style.left = '50%';
         panel.style.top = '50%';
         panel.style.transform = 'translate(-50%, -50%)';
     } else {
-        panel.style.left = (rect.right + 20) + 'px';
-        panel.style.top = (rect.top - 60) + 'px';
+        // Desktop: position relative to node with bounds checking
+        let left = rect.right + 20;
+        let top = rect.top - 60;
+        
+        // Check if panel would go off right edge
+        if (left + panelWidth > window.innerWidth) {
+            left = rect.left - panelWidth - 20;
+        }
+        
+        // Check if panel would go off bottom edge
+        if (top + panelHeight > window.innerHeight) {
+            top = window.innerHeight - panelHeight - padding;
+        }
+        
+        // Check if panel would go off top edge
+        if (top < padding) {
+            top = padding;
+        }
+        
+        // Check if panel would go off left edge
+        if (left < padding) {
+            left = padding;
+        }
+        
+        panel.style.left = left + 'px';
+        panel.style.top = top + 'px';
         panel.style.transform = 'none';
     }
-    
-    panel.classList.add('active');
 }
 
 function closePanel() {
