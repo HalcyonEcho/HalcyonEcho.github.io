@@ -1,0 +1,232 @@
+ <!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+<!--
+TO IMPLEMENT enter this in a page:
+<iframe src="projectaudio.html" style="position: fixed; bottom: 20px; right: 20px; border: none; width: 340px; height: 220px; z-index: 9999;"></iframe>
+-->
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Audio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            /* Vista-esque default font and a rich dark background to make the glass pop */
+            font-family: "Segoe UI", "Lucida Grande", sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .audio-container {
+            /* Aero Glass effect: Transparency + Blur */
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(12px) saturate(160%);
+            -webkit-backdrop-filter: blur(12px) saturate(160%);
+            
+            /* Vista's distinctive soft rounded borders and light/dark outlines */
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-top: 1px solid rgba(255, 255, 255, 0.6);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            
+            /* High-quality Aero shadow effect */
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            
+            padding: 14px;
+            width: 100%;
+            max-width: 340px;
+        }
+
+        .title-bar {
+            /* Translucent title bar matching the Aero aesthetic */
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            text-shadow: 0 0 8px rgba(26, 26, 26, 0.6), 0 1px 2px rgba(0, 0, 0, 0.5);
+            
+            padding: 6px 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            border-radius: 4px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+
+
+
+
+        .player-content {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .info-box {
+            /* Sleek, dark semi-transparent container for media info */
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            padding: 6px;
+            font-size: 12px;
+            color: #d1f0ff;
+            text-shadow: 0 0 4px rgba(0, 162, 232, 0.5);
+            text-align: center;
+            min-height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        audio {
+            width: 100%;
+            accent-color: #3b88c3;
+            border-radius: 4px;
+        }
+
+        audio::-webkit-media-controls-panel {
+            background-color: rgba(240, 245, 250, 0.9);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 6px;
+        }
+
+        .retro-button {
+            flex: 1;
+            padding: 6px 10px;
+            /* Vista Media Player styled glossy teal/blue gradients */
+            background: linear-gradient(180deg, #5ca3d3 0%, #397bb5 49%, #2c6aa3 50%, #478ec4 100%);
+            border: 1px solid #245280;
+            border-top-color: #79bce8;
+            border-radius: 4px;
+            
+            font-size: 11px;
+            font-family: "Segoe UI", sans-serif;
+            cursor: pointer;
+            user-select: none;
+            font-weight: 500;
+            color: white;
+            text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 1px 2px rgba(0,0,0,0.2);
+            transition: filter 0.1s;
+        }
+
+        .retro-button:hover {
+            /* High lighting glow on hover */
+            filter: brightness(1.15);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 0 6px rgba(92, 163, 211, 0.6);
+        }
+
+        .retro-button:active {
+            background: linear-gradient(180deg, #245280 0%, #2c6aa3 100%);
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        .volume-section {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: white;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .volume-label {
+            font-size: 11px;
+            font-weight: 500;
+            width: 45px;
+        }
+
+        input[type="range"] {
+            flex: 1;
+            height: 5px;
+            accent-color: #478ec4;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .status {
+            font-size: 11px;
+            text-align: center;
+            color: #e0f2fe;
+            text-shadow: 0 1px 1px rgba(0,0,0,0.4);
+        }
+    </style>
+</head>
+<body>
+    <div class="audio-container">
+        <div class="title-bar">
+            <span>💿 Yume 2kki OST - Bloom 99：TV Ch 6</span>
+            <div class="title-bar-buttons">
+            </div>
+        </div>
+
+        <div class="player-content">
+            <!-- <div class="info-box">Now Playing</div> -->
+
+            <audio id="projectAudio" autoplay loop controls>
+                <source src="/resources/audios/Yume 2kki OST - Bloom 99： TV Channel 6 (Extended).mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+
+            <!--<div class="status">🎵 Yume 2kki OST - Bloom 99： TV Channel 6 (Extended) 🎵</div>-->
+        </div>
+    </div>
+
+    <script>
+        const audio = document.getElementById('projectAudio');
+        const volumeControl = document.getElementById('volumeControl');
+
+        // Volume control
+        volumeControl.addEventListener('input', (e) => {
+            audio.volume = e.target.value / 100;
+        });
+
+        // Set initial volume
+        audio.volume = 0.7;
+
+        // Save playback position before leaving the page
+        window.addEventListener('beforeunload', () => {
+            localStorage.setItem('projectAudioTime', audio.currentTime);
+            localStorage.setItem('projectAudioVolume', audio.volume);
+        });
+
+        // Resume playback from saved position
+        audio.addEventListener('loadedmetadata', () => {
+            const savedTime = localStorage.getItem('projectAudioTime');
+            const savedVolume = localStorage.getItem('projectAudioVolume');
+            
+            if (savedTime) {
+                audio.currentTime = parseFloat(savedTime);
+            }
+            
+            if (savedVolume) {
+                audio.volume = parseFloat(savedVolume);
+                volumeControl.value = parseFloat(savedVolume) * 100;
+            }
+            
+            audio.play();
+        });
+    </script>
+</body>
+</html>
