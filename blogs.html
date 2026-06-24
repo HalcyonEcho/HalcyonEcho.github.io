@@ -489,8 +489,8 @@ displayMessage();
               .trim();
             
             // Get first ~20 words
-            const words = contentText.split(/\s+/).slice(0, 20).join(' ');
-            previewText = words.length < contentText.length ? words + '.....' : words;
+            const words = contentText.split(/\s+/).slice(0, 8).join(' ');
+            previewText = words.length < contentText.length ? words + '...' : words;
           }
         }
       } catch (fileErr) {
@@ -522,6 +522,8 @@ displayMessage();
   }
 })();
 </script>
+
+<iframe src="/persistentaudio/blogsaudio.html" style="position: fixed; bottom: 20px; right: 20px; border: none; width: 340px; height: 220px; z-index: 9999;"></iframe>
 
 </body>
 </html>
